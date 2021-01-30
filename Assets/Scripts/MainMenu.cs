@@ -4,74 +4,77 @@ using System.Collections;
 using Assets.Scripts;
 using UnityEngine.UI;
 
-public class MainMenu : MonoBehaviour
+namespace Assets.Scripts
 {
-    [SerializeField]
-    public Image black_screen;
-    [SerializeField]
-    public bool interaction_enabled;
-
-    private void Start()
+    public class MainMenu : MonoBehaviour
     {
-        FadeBlackScreen();
-    }
+        [SerializeField]
+        public Image black_screen;
+        [SerializeField]
+        public bool interaction_enabled;
 
-    public void FadeBlackScreen()
-    {
-        IEnumerator FadeBlackScreen()
+        private void Start()
         {
-            for (float i = 1; i >= 0; i -= Time.deltaTime)
+            FadeBlackScreen();
+        }
+
+        public void FadeBlackScreen()
+        {
+            IEnumerator FadeBlackScreen()
             {
-                // set color with i as alpha
-                black_screen.color = new Color(0, 0, 0, i);
-                yield return null;
+                for (float i = 1; i >= 0; i -= Time.deltaTime)
+                {
+                    // set color with i as alpha
+                    black_screen.color = new Color(0, 0, 0, i);
+                    yield return null;
+                }
+                interaction_enabled = true;
             }
-            interaction_enabled = true;
+
+            StartCoroutine(FadeBlackScreen());
         }
 
-        StartCoroutine(FadeBlackScreen());
-    }
-
-    public void AppearBlackScreen()
-    {
-        interaction_enabled = false;
-        IEnumerator AppearBlackScreen()
+        public void AppearBlackScreen()
         {
-            for (float i = 0; i <= 1; i += Time.deltaTime)
+            interaction_enabled = false;
+            IEnumerator AppearBlackScreen()
             {
-                // set color with i as alpha
-                black_screen.color = new Color(0, 0, 0, i);
-                yield return null;
+                for (float i = 0; i <= 1; i += Time.deltaTime)
+                {
+                    // set color with i as alpha
+                    black_screen.color = new Color(0, 0, 0, i);
+                    yield return null;
+                }
             }
+            StartCoroutine(AppearBlackScreen());
         }
-        StartCoroutine(AppearBlackScreen());
-    }
 
-    public void PlayBtnClicked()
-    {
-        if (!interaction_enabled)
-            return;
-
-        IEnumerator Delay()
+        public void PlayBtnClicked()
         {
-            AppearBlackScreen();
-            yield return new WaitForSeconds(1f);
-            SceneManager.LoadScene(Constants.SPRING_SCENE);
+            if (!interaction_enabled)
+                return;
+
+            IEnumerator Delay()
+            {
+                AppearBlackScreen();
+                yield return new WaitForSeconds(1f);
+                SceneManager.LoadScene(Constants.SPRING_SCENE);
+            }
+            StartCoroutine(Delay());
         }
-        StartCoroutine(Delay());
-    }
 
-    public void QuitBtnClicked()
-    {
-        if (!interaction_enabled)
-            return;
-
-        IEnumerator Delay()
+        public void QuitBtnClicked()
         {
-            AppearBlackScreen();
-            yield return new WaitForSeconds(1f);
-            Application.Quit();
+            if (!interaction_enabled)
+                return;
+
+            IEnumerator Delay()
+            {
+                AppearBlackScreen();
+                yield return new WaitForSeconds(1f);
+                Application.Quit();
+            }
+            StartCoroutine(Delay());
         }
-        StartCoroutine(Delay());
     }
 }
