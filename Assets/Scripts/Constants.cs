@@ -12,5 +12,7 @@ namespace Assets.Scripts
         public static int SUMMER_SCENE;
         public static int FALL_SCENE;
         public static int WINTER_SCENE;
+        public static int DRAW_NUMBER = 4;
+        public static int ANCHOR_NUMBER = 18;
     }
 }

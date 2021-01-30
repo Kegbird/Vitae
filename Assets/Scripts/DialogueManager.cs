@@ -21,7 +21,6 @@ namespace Assets.Scripts
         [SerializeField]
         public bool dialogue_box_visible;
 
-
         private void Update()
         {
             if(Input.GetKeyDown(KeyCode.P))
