@@ -30,8 +30,10 @@ public class TradingCard : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.I))
             ShowTradingCard();
+        if (Input.GetKey(KeyCode.U))
+            HideTradingCard();
 
-        if (!task_completed)
+            if (!task_completed)
         {
             if (Input.GetMouseButtonDown(0))
             {
@@ -85,13 +87,12 @@ public class TradingCard : MonoBehaviour
     {
         IEnumerator HideTradingCard()
         {
-            for (float i = 1; i < 1; i -= Time.deltaTime)
+            for (float i = 1; i >= 0; i -= Time.deltaTime)
             {
                 // set color with i as alpha
                 figure_panel.color = new Color(1, 1, 1, i);
                 for (int j = 0; j < Constants.NUMBER_FIGURE; j++)
                 {
-                    figure_slots[j].color = new Color(1, 1, 1, i);
                     figures[j].color = new Color(1, 1, 1, i);
                 }
                 yield return null;
