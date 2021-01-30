@@ -6,7 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class GameHolder : MonoBehaviour
 {
-
+    Button backButton;
+    Image popUp;
     bool[] checkEnd = new bool[4];
     Scene currentScene;
     [SerializeField] Image blackScreen; 
@@ -14,6 +15,14 @@ public class GameHolder : MonoBehaviour
     {
         BlackScreenEditor();
         currentScene = SceneManager.GetActiveScene();
+        GameObject app = GameObject.FindGameObjectWithTag("BackButton");
+        if (app != null)
+            backButton = app.GetComponent<Button>();
+        backButton.gameObject.SetActive(false);
+
+        GameObject popUpHelp = GameObject.FindGameObjectWithTag("PopUp");
+        if (popUpHelp != null)
+            popUp = popUpHelp.GetComponent<Image>();
     }
 
     public void BlackScreenEditor()
@@ -56,10 +65,25 @@ public class GameHolder : MonoBehaviour
         }
     }
 
+    public void BackButton()
+    {
+        backButton.gameObject.SetActive(false);
+        popUp.color = new Color(popUp.color.r, popUp.color.g, popUp.color.b, 0f);
+    }
+
     public void springButton1()
     {
         //link allo script del minigioco della primavera 1
         Debug.Log("Test che funziono1 - primavera");
+        popUp.color = new Color(popUp.color.r, popUp.color.g, popUp.color.b, 1f);
+        backButton.gameObject.SetActive(true);
+        GameObject[] popUpButton = GameObject.FindGameObjectsWithTag("InteractButton");
+        if (popUpButton[0] != null)
+        {
+            Button buttonInt = popUpButton[0].GetComponent<Button>();
+            buttonInt.interactable = false;
+        }
+
         SetEndMinigame();
         CheckEndInt();
     }
@@ -67,6 +91,13 @@ public class GameHolder : MonoBehaviour
     {
         //link allo script del minigioco della primavera 2
         Debug.Log("Test che funziono2 - primavera");
+        GameObject[] popUpButton = GameObject.FindGameObjectsWithTag("InteractButton");
+        if (popUpButton[0] != null)
+        {
+            Button buttonInt = popUpButton[0].GetComponent<Button>();
+            buttonInt.interactable = false;
+        }
+
         SetEndMinigame();
         CheckEndInt();
     }
@@ -74,6 +105,13 @@ public class GameHolder : MonoBehaviour
     {
         //link allo script del minigioco della primavera 3
         Debug.Log("Test che funziono3 - primavera");
+        GameObject[] popUpButton = GameObject.FindGameObjectsWithTag("InteractButton");
+        if (popUpButton[0] != null)
+        {
+            Button buttonInt = popUpButton[0].GetComponent<Button>();
+            buttonInt.interactable = false;
+        }
+
         SetEndMinigame();
         CheckEndInt();
     }
@@ -81,78 +119,175 @@ public class GameHolder : MonoBehaviour
     {
         //link allo script del minigioco della primavera 4
         Debug.Log("Test che funziono4 - primavera");
+        GameObject[] popUpButton = GameObject.FindGameObjectsWithTag("InteractButton");
+        if (popUpButton[0] != null)
+        {
+            Button buttonInt = popUpButton[0].GetComponent<Button>();
+            buttonInt.interactable = false;
+        }
+
         SetEndMinigame();
         CheckEndInt();
     }
     public void summerButton1()
     {
         Debug.Log("Test che funziono1 - estate");
+
+        popUp.color = new Color(popUp.color.r, popUp.color.g, popUp.color.b, 1f);
+        backButton.gameObject.SetActive(true);
+        GameObject[] popUpButton = GameObject.FindGameObjectsWithTag("InteractButton");
+        if (popUpButton[0] != null)
+        {
+            Button buttonInt = popUpButton[0].GetComponent<Button>();
+            buttonInt.interactable = false;
+        }
+
         SetEndMinigame();
         CheckEndInt();
     }
     public void summerButton2()
     {
         Debug.Log("Test che funziono2 - estate");
+
+        GameObject[] popUpButton = GameObject.FindGameObjectsWithTag("InteractButton");
+        if (popUpButton[1] != null)
+        {
+            Button buttonInt = popUpButton[1].GetComponent<Button>();
+            buttonInt.interactable = false;
+        }
+
         SetEndMinigame();
         CheckEndInt();
     }
     public void summerButton3()
     {
+
         Debug.Log("Test che funziono3 - estate");
+        GameObject[] popUpButton = GameObject.FindGameObjectsWithTag("InteractButton");
+        if (popUpButton[2] != null)
+        {
+            Button buttonInt = popUpButton[2].GetComponent<Button>();
+            buttonInt.interactable = false;
+        }
+
         SetEndMinigame();
         CheckEndInt();
     }
     public void summerButton4()
     {
         Debug.Log("Test che funziono4 - estate");
+        GameObject[] popUpButton = GameObject.FindGameObjectsWithTag("InteractButton");
+        if (popUpButton[3] != null)
+        {
+            Button buttonInt = popUpButton[3].GetComponent<Button>();
+            buttonInt.interactable = false;
+        }
+
         SetEndMinigame();
         CheckEndInt();
     }
     public void fallButton1()
     {
-        Debug.Log("Test che funziono1 - autunno");
+        popUp.color = new Color(popUp.color.r, popUp.color.g, popUp.color.b, 1f);
+        backButton.gameObject.SetActive(true);
+        GameObject[] popUpButton = GameObject.FindGameObjectsWithTag("InteractButton");
+        if (popUpButton[0] != null)
+        {
+            Button buttonInt = popUpButton[0].GetComponent<Button>();
+            buttonInt.interactable = false;
+        }
+
         SetEndMinigame();
         CheckEndInt();
     }
     public void fallButton2()
     {
         Debug.Log("Test che funziono2 - autunno");
+        GameObject[] popUpButton = GameObject.FindGameObjectsWithTag("InteractButton");
+        if (popUpButton[1] != null)
+        {
+            Button buttonInt = popUpButton[1].GetComponent<Button>();
+            buttonInt.interactable = false;
+        }
+
         SetEndMinigame();
         CheckEndInt();
     }
     public void fallButton3()
     {
         Debug.Log("Test che funziono3 - autunno");
+        GameObject[] popUpButton = GameObject.FindGameObjectsWithTag("InteractButton");
+        if (popUpButton[2] != null)
+        {
+            Button buttonInt = popUpButton[2].GetComponent<Button>();
+            buttonInt.interactable = false;
+        }
+
         SetEndMinigame();
         CheckEndInt();
     }
     public void fallButton4()
     {
         Debug.Log("Test che funziono4 - autunno");
+        GameObject[] popUpButton = GameObject.FindGameObjectsWithTag("InteractButton");
+        if (popUpButton[3] != null)
+        {
+            Button buttonInt = popUpButton[3].GetComponent<Button>();
+            buttonInt.interactable = false;
+        }
+
         SetEndMinigame();
         CheckEndInt();
     }
     public void winterButton1()
     {
-        Debug.Log("Test che funziono1 - inverno");
+        popUp.color = new Color(popUp.color.r, popUp.color.g, popUp.color.b, 1f);
+        backButton.gameObject.SetActive(true);
+        GameObject[] popUpButton = GameObject.FindGameObjectsWithTag("InteractButton");
+        if (popUpButton[0] != null)
+        {
+            Button buttonInt = popUpButton[0].GetComponent<Button>();
+            buttonInt.interactable = false;
+        }
+
         SetEndMinigame();
         CheckEndInt();
     }
     public void winterButton2()
     {
-        Debug.Log("Test che funziono2 - inverno");
+        GameObject[] popUpButton = GameObject.FindGameObjectsWithTag("InteractButton");
+        if (popUpButton[1] != null)
+        {
+            Button buttonInt = popUpButton[1].GetComponent<Button>();
+            buttonInt.interactable = false;
+        }
+
         SetEndMinigame();
         CheckEndInt();
     }
     public void winterButton3()
     {
         Debug.Log("Test che funziono3 - inverno");
+        GameObject[] popUpButton = GameObject.FindGameObjectsWithTag("InteractButton");
+        if (popUpButton[2] != null)
+        {
+            Button buttonInt = popUpButton[2].GetComponent<Button>();
+            buttonInt.interactable = false;
+        }
+
         SetEndMinigame();
         CheckEndInt();
     }
     public void winterButton4()
     {
         Debug.Log("Test che funziono4 - inverno");
+        GameObject[] popUpButton = GameObject.FindGameObjectsWithTag("InteractButton");
+        if (popUpButton[3] != null)
+        {
+            Button buttonInt = popUpButton[3].GetComponent<Button>();
+            buttonInt.interactable = false;
+        }
+
         SetEndMinigame();
         CheckEndInt();
     }
