@@ -3,16 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Assets.Scripts;
 
 public class GameHolder : MonoBehaviour
 {
+    GameObject[] popUpButtons;
     Button backButton;
     Image popUp;
     bool[] checkEnd = new bool[4];
     Scene currentScene;
-    [SerializeField] Image blackScreen; 
+    [SerializeField] Image blackScreen;
+    [SerializeField] Dialogue button1Dialog;
+    [SerializeField] Dialogue button2Dialog;
+    [SerializeField] Dialogue button3Dialog;
+    [SerializeField] Dialogue button4Dialog;
+    [SerializeField] DialogueManager dialogMng;
+
+
     void Start()
     {
+        dialogMng.ResetDialogue();
         BlackScreenEditor();
         currentScene = SceneManager.GetActiveScene();
         GameObject app = GameObject.FindGameObjectWithTag("BackButton");
@@ -20,9 +30,29 @@ public class GameHolder : MonoBehaviour
             backButton = app.GetComponent<Button>();
         backButton.gameObject.SetActive(false);
 
+        popUpButtons = GameObject.FindGameObjectsWithTag("InteractButton");
+        if (popUpButtons[0] == null || popUpButtons[1] == null || popUpButtons[2] == null || popUpButtons[3] == null)
+        {
+            Application.Quit();
+        }
+
+
+
         GameObject popUpHelp = GameObject.FindGameObjectWithTag("PopUp");
         if (popUpHelp != null)
             popUp = popUpHelp.GetComponent<Image>();
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            if (dialogMng.avaiableRead)
+            {
+                dialogMng.ReadLine();
+            }
+
+        }
     }
 
     public void BlackScreenEditor()
@@ -69,227 +99,192 @@ public class GameHolder : MonoBehaviour
     {
         backButton.gameObject.SetActive(false);
         popUp.color = new Color(popUp.color.r, popUp.color.g, popUp.color.b, 0f);
+        if(!(dialogMng.dialogue_text.text == ""))
+            dialogMng.CloseDialogue();
+        dialogMng.ResetDialogue();
+        CheckEndInt();
     }
 
     public void springButton1()
     {
-        //link allo script del minigioco della primavera 1
-        Debug.Log("Test che funziono1 - primavera");
+        if (backButton.gameObject.activeInHierarchy)
+            return;
         popUp.color = new Color(popUp.color.r, popUp.color.g, popUp.color.b, 1f);
+        popUpButtons[0].GetComponent<Button>().interactable = false;
         backButton.gameObject.SetActive(true);
-        GameObject[] popUpButton = GameObject.FindGameObjectsWithTag("InteractButton");
-        if (popUpButton[0] != null)
-        {
-            Button buttonInt = popUpButton[0].GetComponent<Button>();
-            buttonInt.interactable = false;
-        }
-
+        dialogMng.LoadDialogue(button1Dialog);
+        dialogMng.ShowDialogue();
+        dialogMng.ReadLine();
         SetEndMinigame();
-        CheckEndInt();
+
     }
     public void springButton2()
     {
-        //link allo script del minigioco della primavera 2
-        Debug.Log("Test che funziono2 - primavera");
-        GameObject[] popUpButton = GameObject.FindGameObjectsWithTag("InteractButton");
-        if (popUpButton[0] != null)
-        {
-            Button buttonInt = popUpButton[0].GetComponent<Button>();
-            buttonInt.interactable = false;
-        }
-
+        if (backButton.gameObject.activeInHierarchy)
+            return;
+        popUpButtons[1].GetComponent<Button>().interactable = false;
+        backButton.gameObject.SetActive(true);
+        dialogMng.LoadDialogue(button2Dialog);
+        dialogMng.ShowDialogue();
+        dialogMng.ReadLine();
         SetEndMinigame();
-        CheckEndInt();
     }
     public void springButton3()
     {
-        //link allo script del minigioco della primavera 3
-        Debug.Log("Test che funziono3 - primavera");
-        GameObject[] popUpButton = GameObject.FindGameObjectsWithTag("InteractButton");
-        if (popUpButton[0] != null)
-        {
-            Button buttonInt = popUpButton[0].GetComponent<Button>();
-            buttonInt.interactable = false;
-        }
-
+        if (backButton.gameObject.activeInHierarchy)
+            return;
+        popUpButtons[2].GetComponent<Button>().interactable = false;
+        backButton.gameObject.SetActive(true);
+        dialogMng.LoadDialogue(button3Dialog);
+        dialogMng.ShowDialogue();
+        dialogMng.ReadLine();
         SetEndMinigame();
-        CheckEndInt();
     }
     public void springButton4()
     {
-        //link allo script del minigioco della primavera 4
-        Debug.Log("Test che funziono4 - primavera");
-        GameObject[] popUpButton = GameObject.FindGameObjectsWithTag("InteractButton");
-        if (popUpButton[0] != null)
-        {
-            Button buttonInt = popUpButton[0].GetComponent<Button>();
-            buttonInt.interactable = false;
-        }
-
+        if (backButton.gameObject.activeInHierarchy)
+            return;
+        popUpButtons[3].GetComponent<Button>().interactable = false;
+        backButton.gameObject.SetActive(true);
+        dialogMng.LoadDialogue(button4Dialog);
+        dialogMng.ShowDialogue();
+        dialogMng.ReadLine();
         SetEndMinigame();
-        CheckEndInt();
     }
     public void summerButton1()
     {
-        Debug.Log("Test che funziono1 - estate");
-
+        if (backButton.gameObject.activeInHierarchy)
+            return;
         popUp.color = new Color(popUp.color.r, popUp.color.g, popUp.color.b, 1f);
+        popUpButtons[0].GetComponent<Button>().interactable = false;
         backButton.gameObject.SetActive(true);
-        GameObject[] popUpButton = GameObject.FindGameObjectsWithTag("InteractButton");
-        if (popUpButton[0] != null)
-        {
-            Button buttonInt = popUpButton[0].GetComponent<Button>();
-            buttonInt.interactable = false;
-        }
-
+        dialogMng.LoadDialogue(button1Dialog);
+        dialogMng.ShowDialogue();
+        dialogMng.ReadLine();
         SetEndMinigame();
-        CheckEndInt();
     }
     public void summerButton2()
     {
-        Debug.Log("Test che funziono2 - estate");
-
-        GameObject[] popUpButton = GameObject.FindGameObjectsWithTag("InteractButton");
-        if (popUpButton[1] != null)
-        {
-            Button buttonInt = popUpButton[1].GetComponent<Button>();
-            buttonInt.interactable = false;
-        }
-
+        if (backButton.gameObject.activeInHierarchy)
+            return;
+        popUpButtons[1].GetComponent<Button>().interactable = false;
+        backButton.gameObject.SetActive(true);
+        dialogMng.LoadDialogue(button2Dialog);
+        dialogMng.ShowDialogue();
+        dialogMng.ReadLine();
         SetEndMinigame();
-        CheckEndInt();
     }
     public void summerButton3()
     {
-
-        Debug.Log("Test che funziono3 - estate");
-        GameObject[] popUpButton = GameObject.FindGameObjectsWithTag("InteractButton");
-        if (popUpButton[2] != null)
-        {
-            Button buttonInt = popUpButton[2].GetComponent<Button>();
-            buttonInt.interactable = false;
-        }
-
+        if (backButton.gameObject.activeInHierarchy)
+            return;
+        popUpButtons[2].GetComponent<Button>().interactable = false;
+        backButton.gameObject.SetActive(true);
+        dialogMng.LoadDialogue(button3Dialog);
+        dialogMng.ShowDialogue();
+        dialogMng.ReadLine();
         SetEndMinigame();
-        CheckEndInt();
     }
     public void summerButton4()
     {
-        Debug.Log("Test che funziono4 - estate");
-        GameObject[] popUpButton = GameObject.FindGameObjectsWithTag("InteractButton");
-        if (popUpButton[3] != null)
-        {
-            Button buttonInt = popUpButton[3].GetComponent<Button>();
-            buttonInt.interactable = false;
-        }
-
+        if (backButton.gameObject.activeInHierarchy)
+            return;
+        popUpButtons[3].GetComponent<Button>().interactable = false;
+        backButton.gameObject.SetActive(true);
+        dialogMng.LoadDialogue(button4Dialog);
+        dialogMng.ShowDialogue();
+        dialogMng.ReadLine();
         SetEndMinigame();
-        CheckEndInt();
     }
     public void fallButton1()
     {
+        if (backButton.gameObject.activeInHierarchy)
+            return;
         popUp.color = new Color(popUp.color.r, popUp.color.g, popUp.color.b, 1f);
+        popUpButtons[0].GetComponent<Button>().interactable = false;
         backButton.gameObject.SetActive(true);
-        GameObject[] popUpButton = GameObject.FindGameObjectsWithTag("InteractButton");
-        if (popUpButton[0] != null)
-        {
-            Button buttonInt = popUpButton[0].GetComponent<Button>();
-            buttonInt.interactable = false;
-        }
-
+        dialogMng.LoadDialogue(button1Dialog);
+        dialogMng.ShowDialogue();
+        dialogMng.ReadLine();
         SetEndMinigame();
-        CheckEndInt();
     }
     public void fallButton2()
     {
-        Debug.Log("Test che funziono2 - autunno");
-        GameObject[] popUpButton = GameObject.FindGameObjectsWithTag("InteractButton");
-        if (popUpButton[1] != null)
-        {
-            Button buttonInt = popUpButton[1].GetComponent<Button>();
-            buttonInt.interactable = false;
-        }
-
+        if (backButton.gameObject.activeInHierarchy)
+            return;
+        popUpButtons[1].GetComponent<Button>().interactable = false;
+        backButton.gameObject.SetActive(true);
+        dialogMng.LoadDialogue(button2Dialog);
+        dialogMng.ShowDialogue();
+        dialogMng.ReadLine();
         SetEndMinigame();
-        CheckEndInt();
     }
     public void fallButton3()
     {
-        Debug.Log("Test che funziono3 - autunno");
-        GameObject[] popUpButton = GameObject.FindGameObjectsWithTag("InteractButton");
-        if (popUpButton[2] != null)
-        {
-            Button buttonInt = popUpButton[2].GetComponent<Button>();
-            buttonInt.interactable = false;
-        }
-
+        if (backButton.gameObject.activeInHierarchy)
+            return;
+        popUpButtons[2].GetComponent<Button>().interactable = false;
+        backButton.gameObject.SetActive(true);
+        dialogMng.LoadDialogue(button3Dialog);
+        dialogMng.ShowDialogue();
+        dialogMng.ReadLine();
         SetEndMinigame();
-        CheckEndInt();
     }
     public void fallButton4()
     {
-        Debug.Log("Test che funziono4 - autunno");
-        GameObject[] popUpButton = GameObject.FindGameObjectsWithTag("InteractButton");
-        if (popUpButton[3] != null)
-        {
-            Button buttonInt = popUpButton[3].GetComponent<Button>();
-            buttonInt.interactable = false;
-        }
-
+        if (backButton.gameObject.activeInHierarchy)
+            return;
+        popUpButtons[3].GetComponent<Button>().interactable = false;
+        backButton.gameObject.SetActive(true);
+        dialogMng.LoadDialogue(button4Dialog);
+        dialogMng.ShowDialogue();
+        dialogMng.ReadLine();
         SetEndMinigame();
-        CheckEndInt();
     }
     public void winterButton1()
     {
+        if (backButton.gameObject.activeInHierarchy)
+            return;
         popUp.color = new Color(popUp.color.r, popUp.color.g, popUp.color.b, 1f);
+        popUpButtons[0].GetComponent<Button>().interactable = false;
         backButton.gameObject.SetActive(true);
-        GameObject[] popUpButton = GameObject.FindGameObjectsWithTag("InteractButton");
-        if (popUpButton[0] != null)
-        {
-            Button buttonInt = popUpButton[0].GetComponent<Button>();
-            buttonInt.interactable = false;
-        }
-
+        dialogMng.LoadDialogue(button1Dialog);
+        dialogMng.ShowDialogue();
+        dialogMng.ReadLine();
         SetEndMinigame();
-        CheckEndInt();
     }
     public void winterButton2()
     {
-        GameObject[] popUpButton = GameObject.FindGameObjectsWithTag("InteractButton");
-        if (popUpButton[1] != null)
-        {
-            Button buttonInt = popUpButton[1].GetComponent<Button>();
-            buttonInt.interactable = false;
-        }
-
+        if (backButton.gameObject.activeInHierarchy)
+            return;
+        popUpButtons[1].GetComponent<Button>().interactable = false;
+        backButton.gameObject.SetActive(true);
+        dialogMng.LoadDialogue(button2Dialog);
+        dialogMng.ShowDialogue();
+        dialogMng.ReadLine();
         SetEndMinigame();
-        CheckEndInt();
     }
     public void winterButton3()
     {
-        Debug.Log("Test che funziono3 - inverno");
-        GameObject[] popUpButton = GameObject.FindGameObjectsWithTag("InteractButton");
-        if (popUpButton[2] != null)
-        {
-            Button buttonInt = popUpButton[2].GetComponent<Button>();
-            buttonInt.interactable = false;
-        }
-
+        if (backButton.gameObject.activeInHierarchy)
+            return;
+        popUpButtons[2].GetComponent<Button>().interactable = false;
+        backButton.gameObject.SetActive(true);
+        dialogMng.LoadDialogue(button3Dialog);
+        dialogMng.ShowDialogue();
+        dialogMng.ReadLine();
         SetEndMinigame();
-        CheckEndInt();
     }
     public void winterButton4()
     {
-        Debug.Log("Test che funziono4 - inverno");
-        GameObject[] popUpButton = GameObject.FindGameObjectsWithTag("InteractButton");
-        if (popUpButton[3] != null)
-        {
-            Button buttonInt = popUpButton[3].GetComponent<Button>();
-            buttonInt.interactable = false;
-        }
-
+        if (backButton.gameObject.activeInHierarchy)
+            return;
+        popUpButtons[3].GetComponent<Button>().interactable = false;
+        backButton.gameObject.SetActive(true);
+        dialogMng.LoadDialogue(button4Dialog);
+        dialogMng.ShowDialogue();
+        dialogMng.ReadLine();
         SetEndMinigame();
-        CheckEndInt();
     }
 
 
@@ -309,6 +304,7 @@ public class GameHolder : MonoBehaviour
         if (endOfGame)
         {
             //cose da inserire quando si finisce il livello,quindi il scene changer
+            backButton.gameObject.SetActive(false);
             FadingOut();
             SceneChanger();
         }     
