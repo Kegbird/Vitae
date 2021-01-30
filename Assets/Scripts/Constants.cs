@@ -21,5 +21,7 @@ namespace Assets.Scripts
         public static int PAGE_TO_SCROLL = 8;
         public static int FRAGMENT_TO_WRITE = 5;
         public static int NUMBER_FIGURE = 4;
+        public static int NUMBER_EVENTS = 5;
+        public static int NUMBER_EVENT_SLOTS = 4;
     }
 }

@@ -98,6 +98,7 @@ namespace Assets.Scripts
 
         public void ShowDialogue()
         {
+            dialogue_box_visible = true;
             float begin = Time.time;
             IEnumerator AppearDialogueBox()
             {

@@ -33,7 +33,7 @@ public class TradingCard : MonoBehaviour
         if (Input.GetKey(KeyCode.U))
             HideTradingCard();
 
-            if (!task_completed)
+        if (!task_completed)
         {
             if (Input.GetMouseButtonDown(0))
             {
@@ -49,7 +49,7 @@ public class TradingCard : MonoBehaviour
 
     public bool IsOverSlot(int id)
     {
-        if (Vector3.Distance(figure_slots[id].transform.position, grabbed.transform.position)<85f)
+        if (Vector3.Distance(figure_slots[id].transform.position, grabbed.transform.position) < 85f)
             return true;
         return false;
     }
