@@ -15,6 +15,8 @@ namespace Assets.Scripts
         public static int DRAW_NUMBER = 4;
         public static int ANCHOR_DRAW_NUMBER = 18;
         public static int ANCHOR_GUITAR_NUMBER = 4;
+        public static int ANCHOR_USERAGREEMENT_NUMBER = 2;
         public static int NOTE_TO_PLAY = 4;
+        public static int PAGE_TO_SCROLL = 8;
     }
 }

@@ -155,6 +155,17 @@ namespace Assets.Scripts
                     }
                     yield return null;
                 }
+                draw[0].color = new Color(1, 1, 1, 0);
+                complete_draw[0].color = new Color(1, 0, 0, 0);
+
+                draw[1].color = new Color(1, 1, 1, 0);
+                complete_draw[1].color = new Color(1, 0, 0, 0);
+
+                draw[2].color = new Color(1, 1, 1, 0);
+                complete_draw[2].color = new Color(1, 0, 0, 0);
+
+                draw[3].color = new Color(1, 1, 1, 0);
+                complete_draw[3].color = new Color(1, 0, 0, 0);
                 playing = false;
             }
             StartCoroutine(FadeDrawbook());
