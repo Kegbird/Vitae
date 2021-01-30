@@ -48,7 +48,7 @@ namespace Assets.Scripts
             if (Input.GetKeyDown(KeyCode.I))
                 ShowDrawbook();
             if (Input.GetKeyDown(KeyCode.U))
-                CloseDrawbook();
+                HideDrawbook();
             if (!task_completed && playing)
             {
                 if (Input.GetMouseButtonDown(0))
@@ -100,7 +100,7 @@ namespace Assets.Scripts
 
         public void GeneratePoint()
         {
-            marker_index = Random.Range(0, Constants.ANCHOR_NUMBER);
+            marker_index = Random.Range(0, Constants.ANCHOR_DRAW_NUMBER);
             anchors[marker_index].GetComponent<Image>().color = new Color(1, 1, 1, 1);
             beginning_distance = Vector3.Distance(Camera.main.WorldToScreenPoint(Input.mousePosition), Camera.main.WorldToScreenPoint(anchors[marker_index].transform.position));
             pressing = true;
@@ -137,7 +137,7 @@ namespace Assets.Scripts
             StartCoroutine(AppearDrawbook());
         }
 
-        public void CloseDrawbook()
+        public void HideDrawbook()
         {
             image_index = 0;
             sketch_completed = false;
