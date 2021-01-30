@@ -79,6 +79,7 @@ public class GameHolder : MonoBehaviour
                 blackScreen.color = new Color(0, 0, 0, i);
                 yield return new WaitForSeconds(0.04f);
             }
+            SceneChanger();
         }
     }
 
@@ -306,7 +307,6 @@ public class GameHolder : MonoBehaviour
             //cose da inserire quando si finisce il livello,quindi il scene changer
             backButton.gameObject.SetActive(false);
             FadingOut();
-            SceneChanger();
         }     
     }
 
@@ -315,7 +315,7 @@ public class GameHolder : MonoBehaviour
         switch (currentScene.name)
         {
             case "Primavera":
-                //SceneManager.LoadScene("Estate");
+                SceneManager.LoadScene("Estate");
                 break;
 
             case "Estate":

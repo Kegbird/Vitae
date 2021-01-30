@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Dialogo1
   m_EditorClassIdentifier: 
   lines:
-  - Abbiamo cresciuto paolo
+  - Dialog1 - Primavera
   - Oh yeah
   speed: 0.2

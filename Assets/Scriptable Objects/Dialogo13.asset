@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Dialogo13
   m_EditorClassIdentifier: 
   lines:
-  - Ciaofihwguhwughughuwg
+  - Dialog1 - Inverno
   - gdsgewgewgweg
-  speed: 0
+  speed: 0.2

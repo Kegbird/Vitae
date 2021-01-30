@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Dialogo5
   m_EditorClassIdentifier: 
   lines:
-  - Ciaofihwguhwughughuwg
+  - Dialog1 - Estate
   - Ciaofihwguhwu
-  speed: 0
+  speed: 0.2
