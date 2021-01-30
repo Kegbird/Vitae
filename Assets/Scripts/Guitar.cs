@@ -44,14 +44,14 @@ public class Guitar : MonoBehaviour
 
         if (!task_completed && playing)
         {
-            if (Input.GetMouseButtonDown(0))
-            {
-                GeneratePoint();
-            }
-            if (Input.GetMouseButtonUp(0))
+            if (Input.GetMouseButtonUp(0) && pressing)
             {
                 pressing = false;
                 DisappearPoint();
+            }
+            else if (Input.GetMouseButtonDown(0))
+            {
+                GeneratePoint();
             }
             else if (Input.GetMouseButton(0) && pressing)
             {

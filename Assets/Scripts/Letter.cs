@@ -1,10 +1,12 @@
 ﻿using Assets.Scripts;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UserAgreement : MonoBehaviour
+public class Letter : MonoBehaviour
 {
+
     [SerializeField]
     public GameObject[] anchors;
     [SerializeField]
@@ -14,24 +16,28 @@ public class UserAgreement : MonoBehaviour
     [SerializeField]
     public bool playing;
     [SerializeField]
-    public Image user_agreement;
+    public Image letter;
     [SerializeField]
-    public int page_scrolled;
+    public int fragment_written;
     [SerializeField]
-    public Sprite[] pages;
+    public Sprite[] fragments;
     [SerializeField]
     public int node;
+    [SerializeField]
+    public Sprite indicator;
+    [SerializeField]
+    public bool task_completed;
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.I))
         {
-            ShowUserAgreement();
+            ShowLetter();
         }
 
-        if (playing)
+        if (playing && !task_completed)
         {
-            if(Input.GetMouseButtonUp(0) && pressing)
+            if (Input.GetMouseButtonUp(0) && pressing)
             {
                 pressing = false;
                 DisappearPoint();
@@ -43,13 +49,14 @@ public class UserAgreement : MonoBehaviour
                 {
                     pressing = false;
                     DisappearPoint();
-                    page_scrolled++;
-                    if (page_scrolled == Constants.PAGE_TO_SCROLL)
+                    fragment_written++;
+                    if (fragment_written == Constants.FRAGMENT_TO_WRITE)
                     {
-                        HideUserAgreement();
+                        task_completed = true;
+                        HideLetter();
                         return;
                     }
-                    user_agreement.sprite = pages[page_scrolled];
+                    letter.sprite = fragments[fragment_written];
                 }
             }
             else if (Input.GetMouseButtonDown(0))
@@ -61,10 +68,8 @@ public class UserAgreement : MonoBehaviour
 
     private void GeneratePoint()
     {
-        if (node == 0)
-            node = 1;
-        else
-            node = 0;
+        node = Random.Range(0, Constants.ANCHOR_LETTER_FRAGMENT_NUMBER);
+        anchors[node].GetComponent<Image>().sprite = indicator;
         anchors[node].GetComponent<Image>().color = new Color(1, 1, 1, 1f);
         beginning_distance = Vector3.Distance(Camera.main.WorldToScreenPoint(Input.mousePosition), Camera.main.WorldToScreenPoint(anchors[node].transform.position));
         pressing = true;
@@ -75,35 +80,38 @@ public class UserAgreement : MonoBehaviour
         anchors[node].GetComponent<Image>().color = new Color(1, 1, 1, 0);
     }
 
-    public void ShowUserAgreement()
+    public void ShowLetter()
     {
-        IEnumerator ShowUserAgreement()
+        IEnumerator ShowLetter()
         {
-            user_agreement.sprite = pages[0];
+            if(task_completed)
+                letter.sprite = fragments[Constants.FRAGMENT_TO_WRITE-1];
+            else
+                letter.sprite = fragments[0];
             for (float i = 0; i < 1; i += Time.deltaTime)
             {
                 // set color with i as alpha
-                user_agreement.color = new Color(1, 1, 1, i);
+                letter.color = new Color(1, 1, 1, i);
                 yield return null;
             }
             playing = true;
         }
-        StartCoroutine(ShowUserAgreement());
+        StartCoroutine(ShowLetter());
     }
 
-    public void HideUserAgreement()
+    public void HideLetter()
     {
-        IEnumerator HideUserAgreement()
+        IEnumerator HideLetter()
         {
             for (float i = 1; i >= 0; i -= Time.deltaTime)
             {
                 // set color with i as alpha
-                user_agreement.color = new Color(1, 1, 1, i);
+                letter.color = new Color(1, 1, 1, i);
                 yield return null;
             }
             playing = false;
-            page_scrolled = 0;
+            fragment_written = 0;
         }
-        StartCoroutine(HideUserAgreement());
+        StartCoroutine(HideLetter());
     }
 }
