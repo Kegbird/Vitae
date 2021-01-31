@@ -429,7 +429,7 @@ public class GameHolder : MonoBehaviour
                 SceneManager.LoadScene("Inverno");
                 break;
             case "Inverno":
-                SceneManager.LoadScene("MainMenu");
+                SceneManager.LoadScene("Credits");
                 break;
 
         }
