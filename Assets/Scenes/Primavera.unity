@@ -2902,21 +2902,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backPictureButton: {fileID: 257033712}
+  backPictureGirlfriendButton: {fileID: 0}
+  backPictureMarriageBtn: {fileID: 0}
   blackScreen: {fileID: 2097887132}
   picture: {fileID: 965125543}
+  pictureGirlfriend: {fileID: 0}
+  pictureMarriage: {fileID: 0}
   defaultbackGround: {fileID: 21300000, guid: e0b944f7b8a981447845c6a132ff9e37, type: 3}
-  defaultbackBlurGround: {fileID: 21300000, guid: cf730e009670ad147b52c76f1c02fed1,
-    type: 3}
   backGround: {fileID: 1273613526}
-  drawbookDialog: {fileID: 11400000, guid: 03bbd0d3f35c9f94cb738861edb1a2cf, type: 2}
-  figureDialog: {fileID: 11400000, guid: a5c400a367c8fad40a2085a9dc81e708, type: 2}
-  abacusDialog: {fileID: 11400000, guid: 456b6141c58f3d04aa5b9c1f4cf29d28, type: 2}
-  pictureDialog: {fileID: 11400000, guid: 13b84c782f6525f4c837252f9d08134a, type: 2}
+  drawbookDialog: {fileID: 11400000, guid: 693a22569168f254d8546542363f6bce, type: 2}
+  figureDialog: {fileID: 0}
+  guitarDialog: {fileID: 0}
+  pictureMarriageDialog: {fileID: 0}
+  abacusDialog: {fileID: 0}
+  pictureDialog: {fileID: 11400000, guid: 2b0fcd7814e57504f861653b9fe712d2, type: 2}
+  pictureEndDialog: {fileID: 11400000, guid: fa35fb3c81aaff244925561cc063604a, type: 2}
+  pictureGirlfriendDialog: {fileID: 0}
+  tinderDialogue: {fileID: 0}
+  userAgreementDialog: {fileID: 0}
+  documentDialog: {fileID: 0}
   dialogMng: {fileID: 1170588332}
   drawbook: {fileID: 1357865137}
   tradingCard: {fileID: 1357865138}
   abacus: {fileID: 1357865139}
   guitar: {fileID: 0}
+  tinder: {fileID: 0}
+  userAgreement: {fileID: 0}
+  document: {fileID: 0}
   game_completed: 0
   things_to_do: 4
 --- !u!4 &1357865136
@@ -2974,9 +2986,12 @@ MonoBehaviour:
   task_completed: 0
   sketch_completed: 0
   playing: 0
-  dialogue: {fileID: 11400000, guid: 03bbd0d3f35c9f94cb738861edb1a2cf, type: 2}
+  dialogue: {fileID: 11400000, guid: 4971297b5e821884d9c7c5e5b99e0062, type: 2}
   dialogueManager: {fileID: 1170588332}
   gameholder: {fileID: 1357865135}
+  dialogues:
+  - {fileID: 11400000, guid: d01309c81a42e9b4a9dd7092becd5392, type: 2}
+  - {fileID: 11400000, guid: fc1a5e3e92f505b4b840d6f739121bf4, type: 2}
 --- !u!114 &1357865138
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3007,7 +3022,11 @@ MonoBehaviour:
   can_place: 0
   placed: 0
   dialogueManager: {fileID: 1170588332}
-  dialogue: {fileID: 11400000, guid: 6cba2846ff71f7942ad0aac2ad0025d3, type: 2}
+  dialogues:
+  - {fileID: 11400000, guid: 455e5758e6342244db2115dacad539a5, type: 2}
+  - {fileID: 11400000, guid: 9fc3558e550e26c4195e3c35f71dfcd9, type: 2}
+  - {fileID: 11400000, guid: c0df95a90df3362418e91bd192dec513, type: 2}
+  dialogue: {fileID: 11400000, guid: 397da0e5000488b46bccbad269fb38dc, type: 2}
   gameholder: {fileID: 1357865135}
 --- !u!114 &1357865139
 MonoBehaviour:
@@ -3033,7 +3052,7 @@ MonoBehaviour:
   playing: 0
   task_completed: 0
   dialogueManager: {fileID: 1170588332}
-  endDialogue: {fileID: 11400000, guid: 1f302a9c89b37994487add253619d73a, type: 2}
+  endDialogue: {fileID: 0}
   gameholder: {fileID: 1357865135}
 --- !u!114 &1484356083 stripped
 MonoBehaviour:

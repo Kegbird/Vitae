@@ -39,6 +39,8 @@ public class Guitar : MonoBehaviour
     [SerializeField]
     public DialogueManager dialogueManager;
     [SerializeField]
+    public Dialogue middle;
+    [SerializeField]
     public Dialogue endDialogue;
 
     private void Update()
@@ -68,6 +70,12 @@ public class Guitar : MonoBehaviour
                         task_completed = true;
                         HideGuitar();
                     }
+                    else if(note_played==2)
+                    {
+                        dialogueManager.LoadDialogue(middle);
+                        dialogueManager.ShowDialogue();
+                        dialogueManager.ReadLine();
+                    }
                     DisappearPoint();
                 }
             }
@@ -92,9 +100,9 @@ public class Guitar : MonoBehaviour
 
     public void HideGuitar()
     {
-        dialogueManager.ResetDialogue();
         dialogueManager.LoadDialogue(endDialogue);
         dialogueManager.ShowDialogue();
+        dialogueManager.ReadLine();
 
         IEnumerator HideGuitar()
         {

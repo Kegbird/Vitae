@@ -99,5 +99,6 @@ public class Tinder : MonoBehaviour
         dialogueManager.ResetDialogue();
         dialogueManager.LoadDialogue(endDialogue);
         dialogueManager.ShowDialogue();
+        dialogueManager.ReadLine();
     }
 }

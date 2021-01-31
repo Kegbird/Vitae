@@ -24,9 +24,12 @@ public class GameHolder : MonoBehaviour
     [SerializeField] Dialogue pictureMarriageDialog;
     [SerializeField] Dialogue abacusDialog;
     [SerializeField] Dialogue pictureDialog;
+    [SerializeField] Dialogue pictureEndDialog;
     [SerializeField] Dialogue pictureGirlfriendDialog;
+    [SerializeField] Dialogue pictureGirlfriendEndDialog;
     [SerializeField] Dialogue tinderDialogue;
     [SerializeField] Dialogue userAgreementDialog;
+    [SerializeField] Dialogue documentDialog;
     [SerializeField] DialogueManager dialogMng;
     [SerializeField] Drawbook drawbook;
     [SerializeField] TradingCard tradingCard;
@@ -34,6 +37,7 @@ public class GameHolder : MonoBehaviour
     [SerializeField] Guitar guitar;
     [SerializeField] Tinder tinder;
     [SerializeField] UserAgreement userAgreement;
+    [SerializeField] Document document;
     [SerializeField]
     int game_completed = 0;
     [SerializeField]
@@ -132,8 +136,9 @@ public class GameHolder : MonoBehaviour
         picture.gameObject.SetActive(false);
         StopAllCoroutines();
         dialogMng.StopAllCoroutines();
-        dialogMng.ResetDialogue();
-        dialogMng.CloseDialogue();
+        dialogMng.LoadDialogue(pictureEndDialog);
+        dialogMng.ShowDialogue();
+        dialogMng.ReadLine();
         SetEndMinigame();
     }
 
@@ -150,9 +155,6 @@ public class GameHolder : MonoBehaviour
     public void FigureBookBtnClick()
     {
         tradingCard.ShowTradingCard();
-        dialogMng.LoadDialogue(figureDialog);
-        dialogMng.ShowDialogue();
-        dialogMng.ReadLine();
     }
 
     public void FigureBookBtnOver(Sprite bcg)
@@ -168,9 +170,6 @@ public class GameHolder : MonoBehaviour
     public void AbacusBtnClick()
     {
         abacus.ShowAbacus();
-        dialogMng.LoadDialogue(abacusDialog);
-        dialogMng.ShowDialogue();
-        dialogMng.ReadLine();
     }
 
     public void AbacusBtnOver(Sprite bcg)
@@ -206,10 +205,10 @@ public class GameHolder : MonoBehaviour
         pictureGirlfriend.raycastTarget = false;
         pictureGirlfriend.gameObject.SetActive(false);
         backPictureGirlfriendButton.gameObject.SetActive(false);
-        StopAllCoroutines();
-        dialogMng.StopAllCoroutines();
         dialogMng.ResetDialogue();
-        dialogMng.CloseDialogue();
+        dialogMng.LoadDialogue(pictureGirlfriendEndDialog);
+        dialogMng.ShowDialogue();
+        dialogMng.ReadLine();
         SetEndMinigame();
     }
 
@@ -300,21 +299,20 @@ public class GameHolder : MonoBehaviour
     
     public void DocumentBtnClick()
     {
+        dialogMng.LoadDialogue(documentDialog);
         dialogMng.ShowDialogue();
         dialogMng.ReadLine();
-        SetEndMinigame();
+        document.ShowDocuments();
     }
 
-    public void DocumentBtnOver()
+    public void DocumentBtnOver(Sprite bck)
     {
-        dialogMng.ShowDialogue();
-        dialogMng.ReadLine();
-        SetEndMinigame();
+        backGround.sprite = bck;
     }
 
     public void DocumentBtnExit()
     {
-
+        backGround.sprite = defaultbackGround;
     }
 
     public void winterButton2()
@@ -384,8 +382,8 @@ public class GameHolder : MonoBehaviour
                 SceneManager.LoadScene("Autunno");
                 break;
             case "Autunno":
+                SceneManager.LoadScene("Inverno");
                 break;
-
             case "Inverno":
                 break;
 
