@@ -27,14 +27,13 @@ public class Letter : MonoBehaviour
     public Sprite indicator;
     [SerializeField]
     public bool task_completed;
+    [SerializeField]
+    public DialogueManager dialogueManager;
+    [SerializeField]
+    public GameHolder holder;
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            ShowLetter();
-        }
-
         if (playing && !task_completed)
         {
             if (Input.GetMouseButtonUp(0) && pressing)
@@ -95,12 +94,16 @@ public class Letter : MonoBehaviour
                 yield return null;
             }
             playing = true;
+            letter.raycastTarget = true;
         }
         StartCoroutine(ShowLetter());
     }
 
     public void HideLetter()
     {
+        holder.SetEndMinigame();
+        letter.sprite = fragments[0];
+        task_completed = false;
         IEnumerator HideLetter()
         {
             for (float i = 1; i >= 0; i -= Time.deltaTime)
@@ -111,6 +114,7 @@ public class Letter : MonoBehaviour
             }
             playing = false;
             fragment_written = 0;
+            letter.raycastTarget = false;
         }
         StartCoroutine(HideLetter());
     }

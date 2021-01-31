@@ -8,7 +8,7 @@ namespace Assets.Scripts
 {
     public static class Constants
     {
-        public static int SPRING_SCENE;
+        public static int SPRING_SCENE = 4;
         public static int SUMMER_SCENE;
         public static int FALL_SCENE;
         public static int WINTER_SCENE;
@@ -19,7 +19,7 @@ namespace Assets.Scripts
         public static int ANCHOR_LETTER_FRAGMENT_NUMBER = 14;
         public static int NOTE_TO_PLAY = 4;
         public static int PAGE_TO_SCROLL = 8;
-        public static int FRAGMENT_TO_WRITE = 5;
+        public static int FRAGMENT_TO_WRITE = 6;
         public static int NUMBER_FIGURE = 4;
         public static int NUMBER_EVENTS = 5;
         public static int NUMBER_EVENT_SLOTS = 4;

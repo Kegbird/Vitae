@@ -10,12 +10,14 @@ public class GameHolder : MonoBehaviour
     bool[] checkEnd = new bool[4];
     Scene currentScene;
     [SerializeField] GameObject backPictureButton;
+    [SerializeField] GameObject backPictureNewphenButton;
     [SerializeField] GameObject backPictureGirlfriendButton;
     [SerializeField] GameObject backPictureMarriageBtn;
     [SerializeField] Image blackScreen;
     [SerializeField] Image picture;
     [SerializeField] Image pictureGirlfriend;
     [SerializeField] Image pictureMarriage;
+    [SerializeField] Image pictureNewphen;
     [SerializeField] Sprite defaultbackGround;
     [SerializeField] Image backGround;
     [SerializeField] Dialogue drawbookDialog;
@@ -27,6 +29,8 @@ public class GameHolder : MonoBehaviour
     [SerializeField] Dialogue pictureEndDialog;
     [SerializeField] Dialogue pictureGirlfriendDialog;
     [SerializeField] Dialogue pictureGirlfriendEndDialog;
+    [SerializeField] Dialogue pictureNewphenDialog;
+    [SerializeField] Dialogue pictureNewphenEndDialog;
     [SerializeField] Dialogue tinderDialogue;
     [SerializeField] Dialogue userAgreementDialog;
     [SerializeField] Dialogue documentDialog;
@@ -39,6 +43,7 @@ public class GameHolder : MonoBehaviour
     [SerializeField] UserAgreement userAgreement;
     [SerializeField] Document document;
     [SerializeField] TeaBag teaBag;
+    [SerializeField] Letter letter;
     [SerializeField]
     int game_completed = 0;
     [SerializeField]
@@ -92,7 +97,7 @@ public class GameHolder : MonoBehaviour
     {
         backGround.sprite = defaultbackGround;
         game_completed++;
-        if(game_completed==things_to_do)
+        if (game_completed == things_to_do)
         {
             IEnumerator Delay()
             {
@@ -297,7 +302,7 @@ public class GameHolder : MonoBehaviour
     {
         backGround.sprite = defaultbackGround;
     }
-    
+
     public void DocumentBtnClick()
     {
         dialogMng.LoadDialogue(documentDialog);
@@ -315,7 +320,6 @@ public class GameHolder : MonoBehaviour
     {
         backGround.sprite = defaultbackGround;
     }
-
     public void CupBtnClick()
     {
         teaBag.ShowTeaBag();
@@ -328,29 +332,45 @@ public class GameHolder : MonoBehaviour
     {
         backGround.sprite = defaultbackGround;
     }
-
-
-
-    public void CheckEndInt()
+    public void PictureNewphenBackClick()
     {
-        bool endOfGame = true;
-
-        for (int i = 0; i < checkEnd.Length && endOfGame; i++)
-        {
-            if (!checkEnd[i])
-            {
-                endOfGame = false;
-            }
-        }
-
-        if (endOfGame)
-        {
-            //cose da inserire quando si finisce il livello,quindi il scene changer
-            //backButton.gameObject.SetActive(false);
-            FadingOut();
-        }
+        backPictureNewphenButton.SetActive(false);
+        pictureNewphen.gameObject.SetActive(false);
+        pictureNewphen.raycastTarget = false;
+        dialogMng.LoadDialogue(pictureNewphenEndDialog);
+        dialogMng.ShowDialogue();
+        dialogMng.ReadLine();
+        SetEndMinigame();
     }
-
+    public void PictureNewphenBtnClick()
+    {
+        backPictureNewphenButton.SetActive(true);
+        pictureNewphen.gameObject.SetActive(true);
+        pictureNewphen.raycastTarget = true;
+        dialogMng.LoadDialogue(pictureNewphenDialog);
+        dialogMng.ShowDialogue();
+        dialogMng.ReadLine();
+    }
+    public void PictureNewphenBtnOver(Sprite bck)
+    {
+        backGround.sprite = bck;
+    }
+    public void PictureNewphenBtnExit()
+    {
+        backGround.sprite = defaultbackGround;
+    }
+    public void LetterBtnClick()
+    {
+        letter.ShowLetter();
+    }
+    public void LetterBtnOver(Sprite bck)
+    {
+        backGround.sprite = bck;
+    }
+    public void LetterBtnEnd()
+    {
+        backGround.sprite = defaultbackGround;
+    }
     public void SceneChanger()
     {
         switch (currentScene.name)

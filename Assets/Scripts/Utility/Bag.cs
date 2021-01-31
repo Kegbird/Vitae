@@ -13,6 +13,8 @@ namespace Assets.Scripts.Utility
         public GameObject cup;
         [SerializeField]
         public Sprite cup_with_teabag;
+        [SerializeField]
+        TeaBag teabag;
 
         void Awake()
         {
@@ -30,6 +32,13 @@ namespace Assets.Scripts.Utility
             {
                 GetComponent<Image>().color = new Color(1, 1, 1, 0f);
                 cup.GetComponent<Image>().sprite = cup_with_teabag;
+                IEnumerator Delay()
+                {
+                    yield return new WaitForSeconds(1f);
+                    teabag.HideTeaBag();
+
+                }
+                StartCoroutine(Delay());
             }
             transform.localPosition = reset_position;
         }
