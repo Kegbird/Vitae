@@ -7,17 +7,23 @@ using Assets.Scripts;
 
 public class GameHolder : MonoBehaviour
 {
-    GameObject[] popUpButtons;
-    Button backButton;
-    Image popUp;
     bool[] checkEnd = new bool[4];
     Scene currentScene;
+    [SerializeField] GameObject backPictureButton;
     [SerializeField] Image blackScreen;
-    [SerializeField] Dialogue button1Dialog;
-    [SerializeField] Dialogue button2Dialog;
-    [SerializeField] Dialogue button3Dialog;
-    [SerializeField] Dialogue button4Dialog;
+    [SerializeField] Image picture;
+    [SerializeField] Sprite defaultbackGround;
+    [SerializeField] Image backGround;
+    [SerializeField] Dialogue drawbookDialog;
+    [SerializeField] Dialogue figureDialog;
+    [SerializeField] Dialogue abacusDialog;
+    [SerializeField] Dialogue pictureDialog;
     [SerializeField] DialogueManager dialogMng;
+    [SerializeField] Drawbook drawbook;
+    [SerializeField] TradingCard tradingCard;
+    [SerializeField] Abacus abacus;
+    [SerializeField]
+    int game_completed = 0;
 
 
     void Start()
@@ -25,33 +31,13 @@ public class GameHolder : MonoBehaviour
         dialogMng.ResetDialogue();
         BlackScreenEditor();
         currentScene = SceneManager.GetActiveScene();
-        GameObject app = GameObject.FindGameObjectWithTag("BackButton");
-        if (app != null)
-            backButton = app.GetComponent<Button>();
-        backButton.gameObject.SetActive(false);
-
-        popUpButtons = GameObject.FindGameObjectsWithTag("InteractButton");
-        if (popUpButtons[0] == null || popUpButtons[1] == null || popUpButtons[2] == null || popUpButtons[3] == null)
-        {
-            Application.Quit();
-        }
-
-
-
-        GameObject popUpHelp = GameObject.FindGameObjectWithTag("PopUp");
-        if (popUpHelp != null)
-            popUp = popUpHelp.GetComponent<Image>();
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.T))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (dialogMng.avaiableRead)
-            {
-                dialogMng.ReadLine();
-            }
-
+            dialogMng.ReadLine();
         }
     }
 
@@ -61,10 +47,10 @@ public class GameHolder : MonoBehaviour
 
         IEnumerator BlackScreenEditor()
         {
-            for(float i=1; i>=0; i -= Time.deltaTime)
+            for (float i = 1; i >= 0; i -= Time.deltaTime)
             {
                 blackScreen.color = new Color(0, 0, 0, i);
-                yield return new WaitForSeconds(0.02f);
+                yield return null;
             }
         }
     }
@@ -77,7 +63,7 @@ public class GameHolder : MonoBehaviour
             {
                 // set color with i as alpha
                 blackScreen.color = new Color(0, 0, 0, i);
-                yield return new WaitForSeconds(0.04f);
+                yield return null;
             }
             SceneChanger();
         }
@@ -85,204 +71,231 @@ public class GameHolder : MonoBehaviour
 
     public void SetEndMinigame()
     {
-        bool changeDone = false;
-        for(int i=0; i<checkEnd.Length && !changeDone; i++)
+        game_completed++;
+        if(game_completed==4)
         {
-            if (!checkEnd[i])
+            IEnumerator Delay()
             {
-                checkEnd[i] = true;
-                changeDone = true;
+                yield return new WaitForSeconds(5f);
+                FadingOut();
             }
+
+            StartCoroutine(Delay());
         }
     }
 
-    public void BackButton()
+    public void DrawbookBtnClick()
     {
-        backButton.gameObject.SetActive(false);
-        popUp.color = new Color(popUp.color.r, popUp.color.g, popUp.color.b, 0f);
-        if(!(dialogMng.dialogue_text.text == ""))
-            dialogMng.CloseDialogue();
+        drawbook.ShowDrawbook();
+        dialogMng.LoadDialogue(drawbookDialog);
+        dialogMng.ShowDialogue();
+        dialogMng.ReadLine();
+    }
+
+    public void DrawbookBtnOver(Sprite bcg)
+    {
+        backGround.sprite = bcg;
+    }
+
+    public void DrawbookBtnExit()
+    {
+        backGround.sprite = defaultbackGround;
+    }
+
+    public void PictureBtnClick()
+    {
+        picture.gameObject.SetActive(true);
+        backPictureButton.gameObject.SetActive(true);
+        dialogMng.LoadDialogue(pictureDialog);
+        dialogMng.ShowDialogue();
+        dialogMng.ReadLine();
+    }
+
+    public void PictureBackBtnClick()
+    {
+        backPictureButton.gameObject.SetActive(false);
+        picture.gameObject.SetActive(false);
+        StopAllCoroutines();
+        dialogMng.StopAllCoroutines();
         dialogMng.ResetDialogue();
-        CheckEndInt();
+        dialogMng.CloseDialogue();
+        SetEndMinigame();
     }
 
-    public void springButton1()
+    public void PictureBtnOver(Sprite bcg)
     {
-        if (backButton.gameObject.activeInHierarchy)
-            return;
-        popUp.color = new Color(popUp.color.r, popUp.color.g, popUp.color.b, 1f);
-        popUpButtons[0].GetComponent<Button>().interactable = false;
-        backButton.gameObject.SetActive(true);
-        dialogMng.LoadDialogue(button1Dialog);
-        dialogMng.ShowDialogue();
-        dialogMng.ReadLine();
-        SetEndMinigame();
+        backGround.sprite = bcg;
+    }
 
-    }
-    public void springButton2()
+    public void PictureBtnExit()
     {
-        if (backButton.gameObject.activeInHierarchy)
-            return;
-        popUpButtons[1].GetComponent<Button>().interactable = false;
-        backButton.gameObject.SetActive(true);
-        dialogMng.LoadDialogue(button2Dialog);
+        backGround.sprite = defaultbackGround;
+    }
+
+    public void FigureBookBtnClick()
+    {
+        tradingCard.ShowTradingCard();
+        dialogMng.LoadDialogue(figureDialog);
         dialogMng.ShowDialogue();
         dialogMng.ReadLine();
-        SetEndMinigame();
     }
-    public void springButton3()
+
+    public void FigureBookBtnOver(Sprite bcg)
     {
-        if (backButton.gameObject.activeInHierarchy)
-            return;
-        popUpButtons[2].GetComponent<Button>().interactable = false;
-        backButton.gameObject.SetActive(true);
-        dialogMng.LoadDialogue(button3Dialog);
+        backGround.sprite = bcg;
+    }
+
+    public void FigureBookBtnExit()
+    {
+        backGround.sprite = defaultbackGround;
+    }
+
+    public void AbacusBtnClick()
+    {
+        abacus.ShowAbacus();
+        dialogMng.LoadDialogue(abacusDialog);
         dialogMng.ShowDialogue();
         dialogMng.ReadLine();
-        SetEndMinigame();
     }
-    public void springButton4()
+
+    public void AbacusBtnOver(Sprite bcg)
     {
-        if (backButton.gameObject.activeInHierarchy)
-            return;
-        popUpButtons[3].GetComponent<Button>().interactable = false;
-        backButton.gameObject.SetActive(true);
-        dialogMng.LoadDialogue(button4Dialog);
-        dialogMng.ShowDialogue();
-        dialogMng.ReadLine();
-        SetEndMinigame();
+        backGround.sprite = bcg;
     }
+
+    public void AbacusBtnExit()
+    {
+        backGround.sprite = defaultbackGround;
+    }
+
     public void summerButton1()
     {
-        if (backButton.gameObject.activeInHierarchy)
+        /*if (backButton.gameObject.activeInHierarchy)
             return;
         popUp.color = new Color(popUp.color.r, popUp.color.g, popUp.color.b, 1f);
         popUpButtons[0].GetComponent<Button>().interactable = false;
-        backButton.gameObject.SetActive(true);
-        dialogMng.LoadDialogue(button1Dialog);
+        backButton.gameObject.SetActive(true);*/
+        //dialogMng.LoadDialogue(button1Dialog);
         dialogMng.ShowDialogue();
         dialogMng.ReadLine();
         SetEndMinigame();
     }
     public void summerButton2()
     {
-        if (backButton.gameObject.activeInHierarchy)
+        /*if (backButton.gameObject.activeInHierarchy)
             return;
         popUpButtons[1].GetComponent<Button>().interactable = false;
-        backButton.gameObject.SetActive(true);
-        dialogMng.LoadDialogue(button2Dialog);
+        backButton.gameObject.SetActive(true);*/
+        //dialogMng.LoadDialogue(button2Dialog);
         dialogMng.ShowDialogue();
         dialogMng.ReadLine();
-        SetEndMinigame();
     }
     public void summerButton3()
     {
-        if (backButton.gameObject.activeInHierarchy)
+        /*if (backButton.gameObject.activeInHierarchy)
             return;
         popUpButtons[2].GetComponent<Button>().interactable = false;
-        backButton.gameObject.SetActive(true);
-        dialogMng.LoadDialogue(button3Dialog);
+        backButton.gameObject.SetActive(true);*/
+        //dialogMng.LoadDialogue(button3Dialog);
         dialogMng.ShowDialogue();
         dialogMng.ReadLine();
-        SetEndMinigame();
     }
     public void summerButton4()
     {
-        if (backButton.gameObject.activeInHierarchy)
+        /*if (backButton.gameObject.activeInHierarchy)
             return;
         popUpButtons[3].GetComponent<Button>().interactable = false;
-        backButton.gameObject.SetActive(true);
-        dialogMng.LoadDialogue(button4Dialog);
+        backButton.gameObject.SetActive(true);*/
+        //dialogMng.LoadDialogue(button4Dialog);
         dialogMng.ShowDialogue();
         dialogMng.ReadLine();
-        SetEndMinigame();
     }
     public void fallButton1()
     {
-        if (backButton.gameObject.activeInHierarchy)
+        /*if (backButton.gameObject.activeInHierarchy)
             return;
         popUp.color = new Color(popUp.color.r, popUp.color.g, popUp.color.b, 1f);
         popUpButtons[0].GetComponent<Button>().interactable = false;
-        backButton.gameObject.SetActive(true);
-        dialogMng.LoadDialogue(button1Dialog);
+        backButton.gameObject.SetActive(true);*/
+        //dialogMng.LoadDialogue(button1Dialog);
         dialogMng.ShowDialogue();
         dialogMng.ReadLine();
         SetEndMinigame();
     }
     public void fallButton2()
     {
-        if (backButton.gameObject.activeInHierarchy)
+        /*if (backButton.gameObject.activeInHierarchy)
             return;
         popUpButtons[1].GetComponent<Button>().interactable = false;
-        backButton.gameObject.SetActive(true);
-        dialogMng.LoadDialogue(button2Dialog);
+        backButton.gameObject.SetActive(true);*/
+        //dialogMng.LoadDialogue(button2Dialog);
         dialogMng.ShowDialogue();
         dialogMng.ReadLine();
         SetEndMinigame();
     }
     public void fallButton3()
     {
-        if (backButton.gameObject.activeInHierarchy)
+        /*if (backButton.gameObject.activeInHierarchy)
             return;
         popUpButtons[2].GetComponent<Button>().interactable = false;
-        backButton.gameObject.SetActive(true);
-        dialogMng.LoadDialogue(button3Dialog);
+        backButton.gameObject.SetActive(true);*/
+        //dialogMng.LoadDialogue(button3Dialog);
         dialogMng.ShowDialogue();
         dialogMng.ReadLine();
         SetEndMinigame();
     }
     public void fallButton4()
     {
-        if (backButton.gameObject.activeInHierarchy)
+        /*if (backButton.gameObject.activeInHierarchy)
             return;
         popUpButtons[3].GetComponent<Button>().interactable = false;
-        backButton.gameObject.SetActive(true);
-        dialogMng.LoadDialogue(button4Dialog);
+        backButton.gameObject.SetActive(true);*/
+        //dialogMng.LoadDialogue(button4Dialog);
         dialogMng.ShowDialogue();
         dialogMng.ReadLine();
         SetEndMinigame();
     }
     public void winterButton1()
     {
-        if (backButton.gameObject.activeInHierarchy)
+        /*if (backButton.gameObject.activeInHierarchy)
             return;
         popUp.color = new Color(popUp.color.r, popUp.color.g, popUp.color.b, 1f);
         popUpButtons[0].GetComponent<Button>().interactable = false;
-        backButton.gameObject.SetActive(true);
-        dialogMng.LoadDialogue(button1Dialog);
+        backButton.gameObject.SetActive(true);*/
+        //dialogMng.LoadDialogue(button1Dialog);
         dialogMng.ShowDialogue();
         dialogMng.ReadLine();
         SetEndMinigame();
     }
     public void winterButton2()
     {
-        if (backButton.gameObject.activeInHierarchy)
+        /*if (backButton.gameObject.activeInHierarchy)
             return;
         popUpButtons[1].GetComponent<Button>().interactable = false;
-        backButton.gameObject.SetActive(true);
-        dialogMng.LoadDialogue(button2Dialog);
+        backButton.gameObject.SetActive(true);*/
+        //dialogMng.LoadDialogue(button2Dialog);
         dialogMng.ShowDialogue();
         dialogMng.ReadLine();
         SetEndMinigame();
     }
     public void winterButton3()
     {
-        if (backButton.gameObject.activeInHierarchy)
+        /*if (backButton.gameObject.activeInHierarchy)
             return;
         popUpButtons[2].GetComponent<Button>().interactable = false;
-        backButton.gameObject.SetActive(true);
-        dialogMng.LoadDialogue(button3Dialog);
+        backButton.gameObject.SetActive(true);*/
+        //dialogMng.LoadDialogue(button3Dialog);
         dialogMng.ShowDialogue();
         dialogMng.ReadLine();
         SetEndMinigame();
     }
     public void winterButton4()
     {
-        if (backButton.gameObject.activeInHierarchy)
+        /*if (backButton.gameObject.activeInHierarchy)
             return;
         popUpButtons[3].GetComponent<Button>().interactable = false;
-        backButton.gameObject.SetActive(true);
-        dialogMng.LoadDialogue(button4Dialog);
+        backButton.gameObject.SetActive(true);*/
+        //dialogMng.LoadDialogue(button4Dialog);
         dialogMng.ShowDialogue();
         dialogMng.ReadLine();
         SetEndMinigame();
@@ -305,9 +318,9 @@ public class GameHolder : MonoBehaviour
         if (endOfGame)
         {
             //cose da inserire quando si finisce il livello,quindi il scene changer
-            backButton.gameObject.SetActive(false);
+            //backButton.gameObject.SetActive(false);
             FadingOut();
-        }     
+        }
     }
 
     public void SceneChanger()

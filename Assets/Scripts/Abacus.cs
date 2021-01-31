@@ -21,6 +21,13 @@ public class Abacus : MonoBehaviour
     public bool playing;
     [SerializeField]
     public bool task_completed;
+    [SerializeField]
+    public DialogueManager dialogueManager;
+    [SerializeField]
+    public Dialogue endDialogue;
+    [SerializeField]
+    public GameHolder gameholder;
+
 
     private void Awake()
     {
@@ -34,14 +41,6 @@ public class Abacus : MonoBehaviour
             orangeBalls[i] = mid.transform.GetChild(i).gameObject;
             blueBalls[i] = bottom.transform.GetChild(i).gameObject;
         }
-    }
-
-    private void Update()
-    {
-        if (Input.GetKey(KeyCode.I))
-            ShowAbacus();
-        if (Input.GetKey(KeyCode.U))
-            HideAbacus();
     }
 
     public void ShowAbacus()
@@ -58,11 +57,16 @@ public class Abacus : MonoBehaviour
             {
                 // set color with i as alpha
                 abacus.color = new Color(1, 1, 1, i);
+                abacus.raycastTarget = true;
                 for (int j = 0; j < Constants.BALLS; j++)
                 {
                     redBalls[j].GetComponent<Image>().color = new Color(1, 1, 1, i);
+                    redBalls[j].GetComponent<Image>().raycastTarget = true;
                     orangeBalls[j].GetComponent<Image>().color = new Color(1, 1, 1, i);
+                    orangeBalls[j].GetComponent<Image>().raycastTarget = true;
                     blueBalls[j].GetComponent<Image>().color = new Color(1, 1, 1, i);
+                    blueBalls[j].GetComponent<Image>().raycastTarget = true;
+
                 }
                 yield return null;
             }
@@ -74,17 +78,25 @@ public class Abacus : MonoBehaviour
 
     public void HideAbacus()
     {
+        dialogueManager.ResetDialogue();
+        dialogueManager.LoadDialogue(endDialogue);
+        dialogueManager.ShowDialogue();
+
         IEnumerator HideAbacus()
         {
             for (float i = 1; i >= 0; i -= Time.deltaTime)
             {
                 // set color with i as alpha
                 abacus.color = new Color(1, 1, 1, i);
+                abacus.raycastTarget = false;
                 for (int j = 0; j < Constants.BALLS; j++)
                 {
                     redBalls[j].GetComponent<Image>().color = new Color(1, 1, 1, i);
+                    redBalls[j].GetComponent<Image>().raycastTarget = false;
                     orangeBalls[j].GetComponent<Image>().color = new Color(1, 1, 1, i);
+                    orangeBalls[j].GetComponent<Image>().raycastTarget = false;
                     blueBalls[j].GetComponent<Image>().color = new Color(1, 1, 1, i);
+                    blueBalls[j].GetComponent<Image>().raycastTarget = false;
                 }
                 yield return null;
             }
@@ -95,6 +107,7 @@ public class Abacus : MonoBehaviour
                 blueBalls[j].SetActive(false);
             }
             playing = false;
+            gameholder.SetEndMinigame();
         }
         StartCoroutine(HideAbacus());
     }

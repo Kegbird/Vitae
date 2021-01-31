@@ -30,6 +30,12 @@ namespace Assets.Scripts
         public bool sketch_completed;
         [SerializeField]
         public bool playing;
+        [SerializeField]
+        public Dialogue dialogue;
+        [SerializeField]
+        public DialogueManager dialogueManager;
+        [SerializeField]
+        public GameHolder gameholder;
 
         private void Awake()
         {
@@ -45,10 +51,6 @@ namespace Assets.Scripts
 
         public void Update()
         {
-            if (Input.GetKeyDown(KeyCode.I))
-                ShowDrawbook();
-            if (Input.GetKeyDown(KeyCode.U))
-                HideDrawbook();
             if (!task_completed && playing)
             {
                 if (Input.GetMouseButtonDown(0))
@@ -62,7 +64,7 @@ namespace Assets.Scripts
                     if (!sketch_completed && draw[image_index].color.a != 1)
                         draw[image_index].color = new Color(1f, 1f, 1f, 0f);
                     else if (complete_draw[image_index].color.a != 1)
-                        complete_draw[image_index].color = new Color(1f, 0f, 0f, 0f);
+                        complete_draw[image_index].color = new Color(1f, 1f, 1f, 0f);
                 }
                 else if (Input.GetMouseButton(0) && pressing)
                 {
@@ -74,7 +76,7 @@ namespace Assets.Scripts
                         if (!sketch_completed)
                             draw[image_index].color = new Color(1f, 1f, 1f, 1f);
                         else
-                            complete_draw[image_index].color = new Color(1f, 0f, 0f, 1f);
+                            complete_draw[image_index].color = new Color(1f, 1f, 1f, 1f);
                         image_index++;
                         if (image_index == Constants.DRAW_NUMBER && !sketch_completed)
                         {
@@ -84,6 +86,10 @@ namespace Assets.Scripts
                         else if (image_index == Constants.DRAW_NUMBER)
                         {
                             task_completed = true;
+                            dialogueManager.ResetDialogue();
+                            dialogueManager.LoadDialogue(dialogue);
+                            dialogueManager.ShowDialogue();
+                            HideDrawbook();
                         }
                         DisappearPoint();
                     }
@@ -92,7 +98,7 @@ namespace Assets.Scripts
                         if (!sketch_completed)
                             draw[image_index].color = new Color(1f, 1f, 1f, alpha);
                         else
-                            complete_draw[image_index].color = new Color(1f, 0f, 0f, alpha);
+                            complete_draw[image_index].color = new Color(1f, 1f, 1f, alpha);
                     }
                 }
             }
@@ -115,6 +121,7 @@ namespace Assets.Scripts
         {
             IEnumerator AppearDrawbook()
             {
+                drawbook.GetComponent<Image>().raycastTarget = true;
                 for (float i = 0; i < 1; i += Time.deltaTime)
                 {
                     // set color with i as alpha
@@ -126,7 +133,7 @@ namespace Assets.Scripts
                             if (task_completed)
                             {
                                 draw[j].color = new Color(1, 1, 1, i);
-                                complete_draw[j].color = new Color(1, 0, 0, i);
+                                complete_draw[j].color = new Color(1, 1, 1, i);
                             }
                         }
                     }
@@ -151,22 +158,24 @@ namespace Assets.Scripts
                     for (int j = 0; j < Constants.DRAW_NUMBER; j++)
                     {
                         draw[j].color = new Color(1, 1, 1, i);
-                        complete_draw[j].color = new Color(1, 0, 0, i);
+                        complete_draw[j].color = new Color(1, 1, 1, i);
                     }
                     yield return null;
                 }
                 draw[0].color = new Color(1, 1, 1, 0);
-                complete_draw[0].color = new Color(1, 0, 0, 0);
+                complete_draw[0].color = new Color(1, 1, 1, 0);
 
                 draw[1].color = new Color(1, 1, 1, 0);
-                complete_draw[1].color = new Color(1, 0, 0, 0);
+                complete_draw[1].color = new Color(1, 1, 1, 0);
 
                 draw[2].color = new Color(1, 1, 1, 0);
-                complete_draw[2].color = new Color(1, 0, 0, 0);
+                complete_draw[2].color = new Color(1, 1, 1, 0);
 
                 draw[3].color = new Color(1, 1, 1, 0);
-                complete_draw[3].color = new Color(1, 0, 0, 0);
+                complete_draw[3].color = new Color(1, 1, 1, 0);
                 playing = false;
+                drawbook.GetComponent<Image>().raycastTarget = false;
+                gameholder.SetEndMinigame();
             }
             StartCoroutine(FadeDrawbook());
         }

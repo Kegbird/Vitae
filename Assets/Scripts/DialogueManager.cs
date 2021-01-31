@@ -20,20 +20,6 @@ namespace Assets.Scripts
         public int index;
         [SerializeField]
         public bool dialogue_box_visible;
-        public bool avaiableRead = false;
-
-        private void Update()
-        {
-            if(Input.GetKeyDown(KeyCode.P))
-            {
-                if (!dialogue_box_visible)
-                {
-                    dialogue_box_visible = true;
-                    ShowDialogue();
-                }
-                ReadLine();
-            }
-        }
 
         public void LoadDialogue(Dialogue current_dialogue)
         {
@@ -45,7 +31,6 @@ namespace Assets.Scripts
         {
             index = 0;
             dialogue_text.text = "";
-            avaiableRead = false;
         }
 
         public void ReadLine()
@@ -53,29 +38,21 @@ namespace Assets.Scripts
             if (typing)
             {
                 //If it's still typing, then abort all coroutine and adjust ui
-                typing = false;
                 StopAllCoroutines();
-                if(index-1 >= 0)               
-                    dialogue_text.text = current_dialogue.GetLineByIndex(index - 1);            
-                else               
-                    dialogue_text.text = current_dialogue.GetLineByIndex(index);
-                
-                Debug.Log(index);
+                typing = false;
+                dialogue_text.text = current_dialogue.GetLineByIndex(index);
+                index++;
                 return;
             }
 
             //Otherwise get next line
-            Debug.Log(index);
-            string line= current_dialogue.GetLineByIndex(index);
-            index++;
+            string line = current_dialogue.GetLineByIndex(index);
             if (line == null)
             {
-                ResetDialogue();
                 CloseDialogue();
                 return;
             }
             StartCoroutine(TypeText(line));
-
         }
 
         private IEnumerator TypeText(string complete_line)
@@ -108,7 +85,6 @@ namespace Assets.Scripts
                     dialogue_box.GetComponent<RectTransform>().offsetMin = Vector3.Lerp(dialogue_box.GetComponent<RectTransform>().offsetMin, new Vector2(0, 0), Time.time - begin);
                     yield return new WaitForEndOfFrame();
                 }
-                avaiableRead = true;
             }
             StartCoroutine(AppearDialogueBox());
         }

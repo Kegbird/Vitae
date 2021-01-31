@@ -47,10 +47,8 @@ public class TutorialHandler : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.T))
         {
-            if (dlgMng.avaiableRead)
-            {
-                dlgMng.ReadLine();
-            }
+            dlgMng.ReadLine();
+
         }
     }
 
@@ -70,8 +68,8 @@ public class TutorialHandler : MonoBehaviour
     }
     public void FadingOut(Image blackScreen, GameObject canvasType, GameObject nextCanvas)
     {
-        StartCoroutine(AppearBlackScreen(blackScreen,canvasType,nextCanvas));
-        IEnumerator AppearBlackScreen(Image blackScreenAppl,GameObject canvasTypes, GameObject nextCanvases)
+        StartCoroutine(AppearBlackScreen(blackScreen, canvasType, nextCanvas));
+        IEnumerator AppearBlackScreen(Image blackScreenAppl, GameObject canvasTypes, GameObject nextCanvases)
         {
             for (float i = 0; i <= 1; i += Time.deltaTime)
             {
@@ -81,7 +79,7 @@ public class TutorialHandler : MonoBehaviour
             }
             canvasTypes.SetActive(false);
             nextCanvases.SetActive(true);
-            
+
         }
     }
 
