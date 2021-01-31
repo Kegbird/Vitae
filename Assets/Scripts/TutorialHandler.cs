@@ -8,108 +8,136 @@ using Assets.Scripts;
 
 public class TutorialHandler : MonoBehaviour
 {
-    GameObject[] canvases;
     GameObject[] intButtons;
     [SerializeField] Image screenDiag;
-    [SerializeField] Image screenUpDown;
-    [SerializeField] Image screenDragDrop;
-    [SerializeField] Image screenSwipe;
+    [SerializeField] Image screenMinigame;
     [SerializeField] Dialogue tutDialogo;
-    [SerializeField] Dialogue tutSwipe;
-    [SerializeField] Dialogue tutDragDrop;
-    [SerializeField] Dialogue tutUpDown;
+    [SerializeField] Dialogue tutMinigiochi;
+    [SerializeField] Dialogue tutEnd;
     [SerializeField] DialogueManager dlgMng;
+    [SerializeField] DialogueManager dlgMngMinigame;
+    [SerializeField] Canvas canvasDialog;
+    [SerializeField] Canvas canvasMinigame;
 
     public void Start()
     {
-        canvases[0].SetActive(false); //TutorialUpDown
-        canvases[1].SetActive(false); //Tutorial Drag Drop
-        canvases[2].SetActive(false); //Tutorial Dialog
-        canvases[3].SetActive(false); //Tutorial Swap
-        BlackScreenEditor(screenDiag, canvases[2]);
-
         intButtons = GameObject.FindGameObjectsWithTag("InteractButton");
-        canvases = GameObject.FindGameObjectsWithTag("Canvas");
-        if (intButtons[0] == null || intButtons[1] == null) //|| popUpButtons[2] == null || popUpButtons[3] == null)
-        {
+        if (intButtons[0] == null || intButtons[1] == null)        
             Application.Quit();
-        }
-        intButtons[1].SetActive(false);
+        BlackScreenEditor(screenDiag);
 
-        if (canvases[0] == null || canvases[1] == null || canvases[2] == null || canvases[3] == null)
-        {
-            Application.Quit();
-        }
+        intButtons[2].SetActive(false);
 
+        canvasMinigame.gameObject.SetActive(false);
+        
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.T))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             dlgMng.ReadLine();
-
         }
     }
 
-    public void BlackScreenEditor(Image blackScreenApp, GameObject canvasToActive)
+    public void BlackScreenEditor(Image blackType)
     {
-        StartCoroutine(BlackScreenEditor(blackScreenApp, canvasToActive));
+        StartCoroutine(BlackScreenEditor(blackType));
 
-        IEnumerator BlackScreenEditor(Image blackModifier, GameObject canvasToUse)
+        IEnumerator BlackScreenEditor(Image blackScreen)
         {
-            canvasToUse.SetActive(true);
             for (float i = 1; i >= 0; i -= Time.deltaTime)
             {
-                blackModifier.color = new Color(0, 0, 0, i);
-                yield return new WaitForSeconds(0.005f);
-            }
+                blackScreen.color = new Color(0, 0, 0, i);
+                yield return new WaitForSeconds(0.01f);
+            }         
         }
     }
-    public void FadingOut(Image blackScreen, GameObject canvasType, GameObject nextCanvas)
+
+    public void FadingOut(Image blackType)
     {
+<<<<<<< HEAD
         StartCoroutine(AppearBlackScreen(blackScreen, canvasType, nextCanvas));
         IEnumerator AppearBlackScreen(Image blackScreenAppl, GameObject canvasTypes, GameObject nextCanvases)
+=======
+        StartCoroutine(AppearBlackScreen(blackType));
+        IEnumerator AppearBlackScreen(Image blackScreen)
+>>>>>>> c26a5aff9592a5c3f0712e58d7bff574068d91a7
         {
             for (float i = 0; i <= 1; i += Time.deltaTime)
             {
                 // set color with i as alpha
-                blackScreenAppl.color = new Color(0, 0, 0, i);
-                yield return new WaitForSeconds(0.005f);
+                blackScreen.color = new Color(0, 0, 0, i);
+                yield return new WaitForSeconds(0.01f);
             }
+<<<<<<< HEAD
             canvasTypes.SetActive(false);
             nextCanvases.SetActive(true);
 
+=======
+>>>>>>> c26a5aff9592a5c3f0712e58d7bff574068d91a7
         }
     }
 
     public void btnDialog()
     {
-        intButtons[0].SetActive(false);
-        dlgMng.ResetDialogue();
         dlgMng.LoadDialogue(tutDialogo);
         dlgMng.ShowDialogue();
         dlgMng.ReadLine();
-        intButtons[1].SetActive(true);
+        intButtons[1].SetActive(false);
+        intButtons[2].SetActive(true);
     }
 
     public void Continue1()
     {
-        intButtons[1].SetActive(false);
-        FadingOut(screenDiag, canvases[0], canvases[1]);
-        LoadUpDown();
+        StartCoroutine(FadingOutCustom());
+
+        IEnumerator FadingOutCustom()
+        {
+            for (float i = 0; i <= 1; i += Time.deltaTime)
+            {
+                // set color with i as alpha
+                screenDiag.color = new Color(0, 0, 0, i);
+                yield return new WaitForSeconds(0.01f);
+            }
+            yield return new WaitForSeconds(1);
+            canvasMinigame.gameObject.SetActive(true);
+            intButtons[0].SetActive(false);
+            canvasDialog.gameObject.SetActive(false);
+            BlackScreenEditor(screenMinigame);
+            dlgMngMinigame.ResetDialogue();
+            yield return new WaitForSeconds(4);
+            TutMinigames();
+        }
     }
 
-    public void LoadUpDown()
+    public void TutMinigames()
     {
-        BlackScreenEditor(screenUpDown, canvases[0]);
+        intButtons[0].SetActive(true);
+        dlgMngMinigame.LoadDialogue(tutMinigiochi);
+        dlgMngMinigame.ShowDialogue();
+        dlgMngMinigame.ReadLine();
     }
 
-
-
-
-    public void GameStart()
+    public void Continue2()
     {
-        SceneManager.LoadScene("Primavera");
-    }
+        dlgMngMinigame.ResetDialogue();
+        dlgMngMinigame.LoadDialogue(tutEnd);
+        dlgMngMinigame.ShowDialogue();
+        dlgMngMinigame.ReadLine();
+        intButtons[0].SetActive(false);
+        StartCoroutine(FadingOutCustom2());
+        IEnumerator FadingOutCustom2()
+        {
+            yield return new WaitForSeconds(5);
+            for (float i = 0; i <= 1; i += Time.deltaTime)
+            {
+                // set color with i as alpha
+                screenDiag.color = new Color(0, 0, 0, i);
+                yield return new WaitForSeconds(0.01f);
+            }
+            yield return new WaitForSeconds(3);
+            SceneManager.LoadScene("Primavera");
+        }
+    }    
 }
