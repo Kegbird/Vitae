@@ -11,23 +11,29 @@ public class GameHolder : MonoBehaviour
     Scene currentScene;
     [SerializeField] GameObject backPictureButton;
     [SerializeField] GameObject backPictureGirlfriendButton;
+    [SerializeField] GameObject backPictureMarriageBtn;
     [SerializeField] Image blackScreen;
     [SerializeField] Image picture;
     [SerializeField] Image pictureGirlfriend;
+    [SerializeField] Image pictureMarriage;
     [SerializeField] Sprite defaultbackGround;
     [SerializeField] Image backGround;
     [SerializeField] Dialogue drawbookDialog;
     [SerializeField] Dialogue figureDialog;
+    [SerializeField] Dialogue guitarDialog;
+    [SerializeField] Dialogue pictureMarriageDialog;
     [SerializeField] Dialogue abacusDialog;
     [SerializeField] Dialogue pictureDialog;
     [SerializeField] Dialogue pictureGirlfriendDialog;
     [SerializeField] Dialogue tinderDialogue;
+    [SerializeField] Dialogue userAgreementDialog;
     [SerializeField] DialogueManager dialogMng;
     [SerializeField] Drawbook drawbook;
     [SerializeField] TradingCard tradingCard;
     [SerializeField] Abacus abacus;
     [SerializeField] Guitar guitar;
     [SerializeField] Tinder tinder;
+    [SerializeField] UserAgreement userAgreement;
     [SerializeField]
     int game_completed = 0;
     [SerializeField]
@@ -180,6 +186,7 @@ public class GameHolder : MonoBehaviour
     public void GuitarBtnClick()
     {
         guitar.ShowGuitar();
+        dialogMng.LoadDialogue(guitarDialog);
         dialogMng.ShowDialogue();
         dialogMng.ReadLine();
     }
@@ -243,51 +250,73 @@ public class GameHolder : MonoBehaviour
         backGround.sprite = defaultbackGround;
     }
 
-    public void fallButton2()
+    public void MarriagePictureBtnClick()
     {
-        /*if (backButton.gameObject.activeInHierarchy)
-            return;
-        popUpButtons[1].GetComponent<Button>().interactable = false;
-        backButton.gameObject.SetActive(true);*/
-        //dialogMng.LoadDialogue(button2Dialog);
+        pictureMarriage.gameObject.SetActive(true);
+        backPictureMarriageBtn.gameObject.SetActive(true);
+        dialogMng.LoadDialogue(pictureMarriageDialog);
+        dialogMng.ShowDialogue();
+        dialogMng.ReadLine();
+    }
+
+    public void MarriagePictureBtnOver(Sprite bck)
+    {
+        backGround.sprite = bck;
+    }
+
+    public void MarriagePictureBtnExit()
+    {
+        backGround.sprite = defaultbackGround;
+    }
+
+    public void PictureMarriageBackBtnClick()
+    {
+        backPictureMarriageBtn.gameObject.SetActive(false);
+        pictureMarriage.gameObject.SetActive(false);
+        StopAllCoroutines();
+        dialogMng.StopAllCoroutines();
+        dialogMng.ResetDialogue();
+        dialogMng.CloseDialogue();
+        SetEndMinigame();
+    }
+
+    public void UserAgreementBtnClick()
+    {
+        userAgreement.ShowUserAgreement();
+        dialogMng.LoadDialogue(userAgreementDialog);
+        dialogMng.ShowDialogue();
+        dialogMng.ReadLine();
+    }
+
+    public void UserAgreementBtnOver(Sprite bck)
+    {
+        backGround.sprite = bck;
+    }
+
+    public void UserAgreementBtnExit()
+    {
+        backGround.sprite = defaultbackGround;
+    }
+    
+    public void DocumentBtnClick()
+    {
         dialogMng.ShowDialogue();
         dialogMng.ReadLine();
         SetEndMinigame();
     }
-    public void fallButton3()
+
+    public void DocumentBtnOver()
     {
-        /*if (backButton.gameObject.activeInHierarchy)
-            return;
-        popUpButtons[2].GetComponent<Button>().interactable = false;
-        backButton.gameObject.SetActive(true);*/
-        //dialogMng.LoadDialogue(button3Dialog);
         dialogMng.ShowDialogue();
         dialogMng.ReadLine();
         SetEndMinigame();
     }
-    public void fallButton4()
+
+    public void DocumentBtnExit()
     {
-        /*if (backButton.gameObject.activeInHierarchy)
-            return;
-        popUpButtons[3].GetComponent<Button>().interactable = false;
-        backButton.gameObject.SetActive(true);*/
-        //dialogMng.LoadDialogue(button4Dialog);
-        dialogMng.ShowDialogue();
-        dialogMng.ReadLine();
-        SetEndMinigame();
+
     }
-    public void winterButton1()
-    {
-        /*if (backButton.gameObject.activeInHierarchy)
-            return;
-        popUp.color = new Color(popUp.color.r, popUp.color.g, popUp.color.b, 1f);
-        popUpButtons[0].GetComponent<Button>().interactable = false;
-        backButton.gameObject.SetActive(true);*/
-        //dialogMng.LoadDialogue(button1Dialog);
-        dialogMng.ShowDialogue();
-        dialogMng.ReadLine();
-        SetEndMinigame();
-    }
+
     public void winterButton2()
     {
         /*if (backButton.gameObject.activeInHierarchy)

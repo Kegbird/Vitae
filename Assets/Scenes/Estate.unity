@@ -468,13 +468,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   backPictureButton: {fileID: 0}
   backPictureGirlfriendButton: {fileID: 1132213034}
+  backPictureMarriageBtn: {fileID: 0}
   blackScreen: {fileID: 922403437}
   picture: {fileID: 0}
   pictureGirlfriend: {fileID: 1573427042}
+  pictureMarriage: {fileID: 0}
   defaultbackGround: {fileID: 21300000, guid: a6f88adb7fa0212428278952519a8390, type: 3}
   backGround: {fileID: 489500884}
   drawbookDialog: {fileID: 0}
   figureDialog: {fileID: 0}
+  guitarDialog: {fileID: 11400000, guid: 12fd415906360e241b8de10a64f6dc36, type: 2}
+  pictureMarriageDialog: {fileID: 0}
   abacusDialog: {fileID: 0}
   pictureDialog: {fileID: 0}
   pictureGirlfriendDialog: {fileID: 11400000, guid: a5c400a367c8fad40a2085a9dc81e708,
@@ -486,6 +490,7 @@ MonoBehaviour:
   abacus: {fileID: 0}
   guitar: {fileID: 715401129}
   tinder: {fileID: 715401130}
+  userAgreement: {fileID: 0}
   game_completed: 0
   things_to_do: 3
 --- !u!4 &715401128

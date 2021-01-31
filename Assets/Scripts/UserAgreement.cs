@@ -21,6 +21,12 @@ public class UserAgreement : MonoBehaviour
     public Sprite[] pages;
     [SerializeField]
     public int node;
+    [SerializeField]
+    public GameHolder holder;
+    [SerializeField]
+    public DialogueManager dialogueManager;
+    [SerializeField]
+    public Dialogue dialogueEnd;
 
     private void Update()
     {
@@ -93,6 +99,11 @@ public class UserAgreement : MonoBehaviour
 
     public void HideUserAgreement()
     {
+        dialogueManager.ResetDialogue();
+        dialogueManager.LoadDialogue(dialogueEnd);
+        dialogueManager.ShowDialogue();
+        holder.SetEndMinigame();
+
         IEnumerator HideUserAgreement()
         {
             for (float i = 1; i >= 0; i -= Time.deltaTime)

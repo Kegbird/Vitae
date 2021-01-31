@@ -56,13 +56,8 @@ public class TutorialHandler : MonoBehaviour
 
     public void FadingOut(Image blackType)
     {
-<<<<<<< HEAD
-        StartCoroutine(AppearBlackScreen(blackScreen, canvasType, nextCanvas));
-        IEnumerator AppearBlackScreen(Image blackScreenAppl, GameObject canvasTypes, GameObject nextCanvases)
-=======
         StartCoroutine(AppearBlackScreen(blackType));
         IEnumerator AppearBlackScreen(Image blackScreen)
->>>>>>> c26a5aff9592a5c3f0712e58d7bff574068d91a7
         {
             for (float i = 0; i <= 1; i += Time.deltaTime)
             {
@@ -70,12 +65,6 @@ public class TutorialHandler : MonoBehaviour
                 blackScreen.color = new Color(0, 0, 0, i);
                 yield return new WaitForSeconds(0.01f);
             }
-<<<<<<< HEAD
-            canvasTypes.SetActive(false);
-            nextCanvases.SetActive(true);
-
-=======
->>>>>>> c26a5aff9592a5c3f0712e58d7bff574068d91a7
         }
     }
 
