@@ -36,6 +36,8 @@ namespace Assets.Scripts
         public DialogueManager dialogueManager;
         [SerializeField]
         public GameHolder gameholder;
+        [SerializeField]
+        public Dialogue[] dialogues;
 
         private void Awake()
         {
@@ -78,6 +80,22 @@ namespace Assets.Scripts
                         else
                             complete_draw[image_index].color = new Color(1f, 1f, 1f, 1f);
                         image_index++;
+
+                        if(image_index==2 && sketch_completed)
+                        {
+                            dialogueManager.ResetDialogue();
+                            dialogueManager.LoadDialogue(dialogues[1]);
+                            dialogueManager.ShowDialogue();
+                            dialogueManager.ReadLine();
+                        }
+                        if(image_index==3 && !sketch_completed)
+                        {
+                            dialogueManager.ResetDialogue();
+                            dialogueManager.LoadDialogue(dialogues[0]);
+                            dialogueManager.ShowDialogue();
+                            dialogueManager.ReadLine();
+                        }
+
                         if (image_index == Constants.DRAW_NUMBER && !sketch_completed)
                         {
                             sketch_completed = true;

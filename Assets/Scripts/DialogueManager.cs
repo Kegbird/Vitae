@@ -40,6 +40,7 @@ namespace Assets.Scripts
                 //If it's still typing, then abort all coroutine and adjust ui
                 StopAllCoroutines();
                 typing = false;
+                index--;
                 dialogue_text.text = current_dialogue.GetLineByIndex(index);
                 index++;
                 return;
@@ -47,6 +48,7 @@ namespace Assets.Scripts
 
             //Otherwise get next line
             string line = current_dialogue.GetLineByIndex(index);
+            index++;
             if (line == null)
             {
                 CloseDialogue();

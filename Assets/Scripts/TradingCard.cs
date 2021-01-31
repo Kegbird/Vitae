@@ -28,6 +28,8 @@ public class TradingCard : MonoBehaviour
     [SerializeField]
     public DialogueManager dialogueManager;
     [SerializeField]
+    public Dialogue[] dialogues;
+    [SerializeField]
     public Dialogue dialogue;
     [SerializeField]
     public GameHolder gameholder;
@@ -63,12 +65,17 @@ public class TradingCard : MonoBehaviour
         placed++;
         if (placed == Constants.NUMBER_FIGURE)
         {
-            dialogueManager.ResetDialogue();
             dialogueManager.LoadDialogue(dialogue);
             dialogueManager.ShowDialogue();
             dialogueManager.ReadLine();
             HideTradingCard();
             task_completed = true;
+        }
+        else
+        {
+            dialogueManager.LoadDialogue(dialogues[placed-1]);
+            dialogueManager.ShowDialogue();
+            dialogueManager.ReadLine();
         }
     }
 

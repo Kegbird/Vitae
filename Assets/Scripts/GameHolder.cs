@@ -24,7 +24,9 @@ public class GameHolder : MonoBehaviour
     [SerializeField] Dialogue pictureMarriageDialog;
     [SerializeField] Dialogue abacusDialog;
     [SerializeField] Dialogue pictureDialog;
+    [SerializeField] Dialogue pictureEndDialog;
     [SerializeField] Dialogue pictureGirlfriendDialog;
+    [SerializeField] Dialogue pictureGirlfriendEndDialog;
     [SerializeField] Dialogue tinderDialogue;
     [SerializeField] Dialogue userAgreementDialog;
     [SerializeField] Dialogue documentDialog;
@@ -134,8 +136,9 @@ public class GameHolder : MonoBehaviour
         picture.gameObject.SetActive(false);
         StopAllCoroutines();
         dialogMng.StopAllCoroutines();
-        dialogMng.ResetDialogue();
-        dialogMng.CloseDialogue();
+        dialogMng.LoadDialogue(pictureEndDialog);
+        dialogMng.ShowDialogue();
+        dialogMng.ReadLine();
         SetEndMinigame();
     }
 
@@ -152,9 +155,6 @@ public class GameHolder : MonoBehaviour
     public void FigureBookBtnClick()
     {
         tradingCard.ShowTradingCard();
-        dialogMng.LoadDialogue(figureDialog);
-        dialogMng.ShowDialogue();
-        dialogMng.ReadLine();
     }
 
     public void FigureBookBtnOver(Sprite bcg)
@@ -170,9 +170,6 @@ public class GameHolder : MonoBehaviour
     public void AbacusBtnClick()
     {
         abacus.ShowAbacus();
-        dialogMng.LoadDialogue(abacusDialog);
-        dialogMng.ShowDialogue();
-        dialogMng.ReadLine();
     }
 
     public void AbacusBtnOver(Sprite bcg)
@@ -208,10 +205,10 @@ public class GameHolder : MonoBehaviour
         pictureGirlfriend.raycastTarget = false;
         pictureGirlfriend.gameObject.SetActive(false);
         backPictureGirlfriendButton.gameObject.SetActive(false);
-        StopAllCoroutines();
-        dialogMng.StopAllCoroutines();
         dialogMng.ResetDialogue();
-        dialogMng.CloseDialogue();
+        dialogMng.LoadDialogue(pictureGirlfriendEndDialog);
+        dialogMng.ShowDialogue();
+        dialogMng.ReadLine();
         SetEndMinigame();
     }
 
@@ -387,7 +384,6 @@ public class GameHolder : MonoBehaviour
             case "Autunno":
                 SceneManager.LoadScene("Inverno");
                 break;
-
             case "Inverno":
                 break;
 

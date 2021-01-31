@@ -78,11 +78,6 @@ public class Abacus : MonoBehaviour
 
     public void HideAbacus()
     {
-        dialogueManager.ResetDialogue();
-        dialogueManager.LoadDialogue(endDialogue);
-        dialogueManager.ShowDialogue();
-        dialogueManager.ReadLine();
-
         IEnumerator HideAbacus()
         {
             for (float i = 1; i >= 0; i -= Time.deltaTime)

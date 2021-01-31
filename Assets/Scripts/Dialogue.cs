@@ -12,7 +12,7 @@ namespace Assets.Scripts
 
         public string GetLineByIndex(int index)
         {
-            if (index == lines.Length)
+            if (index >= lines.Length)
                 return null;
             return lines[index];
         }

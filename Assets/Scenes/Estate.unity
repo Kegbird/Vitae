@@ -477,13 +477,18 @@ MonoBehaviour:
   backGround: {fileID: 489500884}
   drawbookDialog: {fileID: 0}
   figureDialog: {fileID: 0}
-  guitarDialog: {fileID: 11400000, guid: 12fd415906360e241b8de10a64f6dc36, type: 2}
+  guitarDialog: {fileID: 11400000, guid: a8f1c2473b6caa946908202a3baff773, type: 2}
   pictureMarriageDialog: {fileID: 0}
   abacusDialog: {fileID: 0}
   pictureDialog: {fileID: 0}
-  pictureGirlfriendDialog: {fileID: 11400000, guid: a5c400a367c8fad40a2085a9dc81e708,
+  pictureEndDialog: {fileID: 0}
+  pictureGirlfriendDialog: {fileID: 11400000, guid: e386d8ebd2ba3d642bf2518c0540c559,
     type: 2}
-  tinderDialogue: {fileID: 11400000, guid: 67bbde05ad577504fabd6d3958334807, type: 2}
+  pictureGirlfriendEndDialog: {fileID: 11400000, guid: ab62df5ae818cf546a298318e4f002ca,
+    type: 2}
+  tinderDialogue: {fileID: 11400000, guid: 2f0ec4e047876fb449340b3d5ca12efd, type: 2}
+  userAgreementDialog: {fileID: 0}
+  documentDialog: {fileID: 0}
   dialogMng: {fileID: 835499082}
   drawbook: {fileID: 0}
   tradingCard: {fileID: 0}
@@ -491,6 +496,7 @@ MonoBehaviour:
   guitar: {fileID: 715401129}
   tinder: {fileID: 715401130}
   userAgreement: {fileID: 0}
+  document: {fileID: 0}
   game_completed: 0
   things_to_do: 3
 --- !u!4 &715401128
@@ -544,14 +550,15 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 162b689c2ef8dfa42b0de2705d42828c, type: 3}
   - {fileID: 21300000, guid: 57a457c7b8079b7478475ab517e5a755, type: 3}
   audio_clip:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 8300000, guid: ef02cd643597e834393ca1c97690da44, type: 3}
+  - {fileID: 8300000, guid: a861aca9ec3f13a4b8d08c239c0add2b, type: 3}
+  - {fileID: 8300000, guid: d73067a201ea9f1448e48ce182d0192f, type: 3}
+  - {fileID: 8300000, guid: 2f102c1db17bea342b13e6a05f72d9cb, type: 3}
   audio_source: {fileID: 1815779618}
   game_holder: {fileID: 715401127}
   dialogueManager: {fileID: 835499082}
-  endDialogue: {fileID: 11400000, guid: 583830e1a6b1add4da8dbe2299f60595, type: 2}
+  middle: {fileID: 11400000, guid: 946b3a64f9f238848a8dc03bbe6ec728, type: 2}
+  endDialogue: {fileID: 11400000, guid: 6a64c91dbd2749d4a8ed781874036dfa, type: 2}
 --- !u!114 &715401130
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -576,7 +583,7 @@ MonoBehaviour:
   like: {fileID: 21300000, guid: f460dd44245557d48ac24b259ee8c660, type: 3}
   girls_seen: 0
   gameHolder: {fileID: 715401127}
-  endDialogue: {fileID: 11400000, guid: 599ac94e0ff193e469808736bfb49dbf, type: 2}
+  endDialogue: {fileID: 11400000, guid: 25758f1023151524bb9358db80214d30, type: 2}
   dialogueManager: {fileID: 835499082}
   playing: 0
   pressing: 0
@@ -2126,7 +2133,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.6
   m_Pitch: 1
   Loop: 0
   Mute: 0
