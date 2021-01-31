@@ -34,6 +34,12 @@ public class Guitar : MonoBehaviour
     public AudioClip[] audio_clip;
     [SerializeField]
     public AudioSource audio_source;
+    [SerializeField]
+    public GameHolder game_holder;
+    [SerializeField]
+    public DialogueManager dialogueManager;
+    [SerializeField]
+    public Dialogue endDialogue;
 
     private void Update()
     {
@@ -63,7 +69,10 @@ public class Guitar : MonoBehaviour
                     audio_source.Play();
                     note_played++;
                     if (note_played == Constants.NOTE_TO_PLAY)
+                    {
                         task_completed = true;
+                        HideGuitar();
+                    }
                     DisappearPoint();
                 }
             }
@@ -87,6 +96,10 @@ public class Guitar : MonoBehaviour
 
     public void HideGuitar()
     {
+        dialogueManager.ResetDialogue();
+        dialogueManager.LoadDialogue(endDialogue);
+        dialogueManager.ShowDialogue();
+
         IEnumerator HideGuitar()
         {
             for (float i = 1; i >= 0; i -= Time.deltaTime)
@@ -97,6 +110,7 @@ public class Guitar : MonoBehaviour
             }
             playing = false;
             note_played = 0;
+            game_holder.SetEndMinigame();
         }
         StartCoroutine(HideGuitar());
     }

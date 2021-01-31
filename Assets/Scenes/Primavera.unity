@@ -2905,6 +2905,8 @@ MonoBehaviour:
   blackScreen: {fileID: 2097887132}
   picture: {fileID: 965125543}
   defaultbackGround: {fileID: 21300000, guid: e0b944f7b8a981447845c6a132ff9e37, type: 3}
+  defaultbackBlurGround: {fileID: 21300000, guid: cf730e009670ad147b52c76f1c02fed1,
+    type: 3}
   backGround: {fileID: 1273613526}
   drawbookDialog: {fileID: 11400000, guid: 03bbd0d3f35c9f94cb738861edb1a2cf, type: 2}
   figureDialog: {fileID: 11400000, guid: a5c400a367c8fad40a2085a9dc81e708, type: 2}
@@ -2914,7 +2916,9 @@ MonoBehaviour:
   drawbook: {fileID: 1357865137}
   tradingCard: {fileID: 1357865138}
   abacus: {fileID: 1357865139}
+  guitar: {fileID: 0}
   game_completed: 0
+  things_to_do: 4
 --- !u!4 &1357865136
 Transform:
   m_ObjectHideFlags: 0

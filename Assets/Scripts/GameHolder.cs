@@ -10,20 +10,26 @@ public class GameHolder : MonoBehaviour
     bool[] checkEnd = new bool[4];
     Scene currentScene;
     [SerializeField] GameObject backPictureButton;
+    [SerializeField] GameObject backPictureGirlfriendButton;
     [SerializeField] Image blackScreen;
     [SerializeField] Image picture;
+    [SerializeField] Image pictureGirlfriend;
     [SerializeField] Sprite defaultbackGround;
     [SerializeField] Image backGround;
     [SerializeField] Dialogue drawbookDialog;
     [SerializeField] Dialogue figureDialog;
     [SerializeField] Dialogue abacusDialog;
     [SerializeField] Dialogue pictureDialog;
+    [SerializeField] Dialogue pictureGirlfriendDialog;
     [SerializeField] DialogueManager dialogMng;
     [SerializeField] Drawbook drawbook;
     [SerializeField] TradingCard tradingCard;
     [SerializeField] Abacus abacus;
+    [SerializeField] Guitar guitar;
     [SerializeField]
     int game_completed = 0;
+    [SerializeField]
+    int things_to_do;
 
 
     void Start()
@@ -71,8 +77,9 @@ public class GameHolder : MonoBehaviour
 
     public void SetEndMinigame()
     {
+        backGround.sprite = defaultbackGround;
         game_completed++;
-        if(game_completed==4)
+        if(game_completed==things_to_do)
         {
             IEnumerator Delay()
             {
@@ -168,28 +175,54 @@ public class GameHolder : MonoBehaviour
         backGround.sprite = defaultbackGround;
     }
 
-    public void summerButton1()
+    public void GuitarBtnClick()
     {
-        /*if (backButton.gameObject.activeInHierarchy)
-            return;
-        popUp.color = new Color(popUp.color.r, popUp.color.g, popUp.color.b, 1f);
-        popUpButtons[0].GetComponent<Button>().interactable = false;
-        backButton.gameObject.SetActive(true);*/
-        //dialogMng.LoadDialogue(button1Dialog);
+        guitar.ShowGuitar();
         dialogMng.ShowDialogue();
         dialogMng.ReadLine();
         SetEndMinigame();
     }
-    public void summerButton2()
+
+    public void GuitarBtnOver(Sprite bck)
     {
-        /*if (backButton.gameObject.activeInHierarchy)
-            return;
-        popUpButtons[1].GetComponent<Button>().interactable = false;
-        backButton.gameObject.SetActive(true);*/
-        //dialogMng.LoadDialogue(button2Dialog);
+        backGround.sprite = bck;
+    }
+
+    public void GuitarBtnExit()
+    {
+        backGround.sprite = defaultbackGround;
+    }
+
+    public void PictureGirlfriendBackBtnClick()
+    {
+        pictureGirlfriend.gameObject.SetActive(false);
+        backPictureGirlfriendButton.gameObject.SetActive(false);
+        StopAllCoroutines();
+        dialogMng.StopAllCoroutines();
+        dialogMng.ResetDialogue();
+        dialogMng.CloseDialogue();
+        SetEndMinigame();
+    }
+
+    public void PictureGirlfriendBtnClick()
+    {
+        pictureGirlfriend.gameObject.SetActive(true);
+        backPictureGirlfriendButton.gameObject.SetActive(true);
+        dialogMng.LoadDialogue(pictureGirlfriendDialog);
         dialogMng.ShowDialogue();
         dialogMng.ReadLine();
     }
+
+    public void PictureGirlfriendBtnOver(Sprite bck)
+    {
+        backGround.sprite = bck;
+    }
+
+    public void PictureGirlfirendBtnExit()
+    {
+        backGround.sprite = defaultbackGround;
+    }
+
     public void summerButton3()
     {
         /*if (backButton.gameObject.activeInHierarchy)
