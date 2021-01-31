@@ -34,9 +34,13 @@ public class TutorialHandler : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (dlgMng.gameObject.activeInHierarchy && Input.GetKeyDown(KeyCode.Space))
         {
             dlgMng.ReadLine();
+        }
+        if (dlgMngMinigame.gameObject.activeInHierarchy && Input.GetKeyDown(KeyCode.Space))
+        {
+            dlgMngMinigame.ReadLine();
         }
     }
 
