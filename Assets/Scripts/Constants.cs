@@ -26,5 +26,6 @@ namespace Assets.Scripts
         public static int BALLS = 6;
         public static int GIRLS = 4;
         public static int DOCUMENTS = 12;
+        public static int TUTORIAL_SCENE = 5;
     }
 }

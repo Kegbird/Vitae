@@ -58,7 +58,7 @@ namespace Assets.Scripts
             {
                 AppearBlackScreen();
                 yield return new WaitForSeconds(1f);
-                SceneManager.LoadScene(Constants.SPRING_SCENE);
+                SceneManager.LoadScene(Constants.TUTORIAL_SCENE);
             }
             StartCoroutine(Delay());
         }
