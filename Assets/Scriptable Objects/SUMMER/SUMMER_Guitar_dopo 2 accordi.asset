@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ccd529d13930fb47b7a4a9784e601c0, type: 3}
+  m_Name: SUMMER_Guitar_dopo 2 accordi
+  m_EditorClassIdentifier: 
+  lines:
+  - With mum it was always a yes.
+  - Everything i asked
+  - It's like i wanted her to stop me
+  - to get SOMETHING wrong
+  - to fail me.
+  - The more i tried to make her fall from the altar i put her on
+  - the less i saw the wasteland i was leaving around me.
+  speed: 0
