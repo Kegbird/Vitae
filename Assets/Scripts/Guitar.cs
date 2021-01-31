@@ -95,6 +95,8 @@ public class Guitar : MonoBehaviour
             guitar.raycastTarget = true;
             playing = true;
         }
+        if (task_completed)
+            return;
         StartCoroutine(ShowGuitar());
     }
 
@@ -103,6 +105,7 @@ public class Guitar : MonoBehaviour
         dialogueManager.LoadDialogue(endDialogue);
         dialogueManager.ShowDialogue();
         dialogueManager.ReadLine();
+        task_completed = true;
 
         IEnumerator HideGuitar()
         {

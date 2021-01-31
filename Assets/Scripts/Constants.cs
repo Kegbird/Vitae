@@ -8,10 +8,7 @@ namespace Assets.Scripts
 {
     public static class Constants
     {
-        public static int SPRING_SCENE = 4;
-        public static int SUMMER_SCENE;
-        public static int FALL_SCENE;
-        public static int WINTER_SCENE;
+        public static int TUTORIAL_SCENE = 5;
         public static int DRAW_NUMBER = 4;
         public static int ANCHOR_DRAW_NUMBER = 18;
         public static int ANCHOR_GUITAR_NUMBER = 4;
@@ -26,6 +23,5 @@ namespace Assets.Scripts
         public static int BALLS = 6;
         public static int GIRLS = 4;
         public static int DOCUMENTS = 12;
-        public static int TUTORIAL_SCENE = 5;
     }
 }

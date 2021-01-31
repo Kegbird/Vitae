@@ -45,6 +45,8 @@ public class GameHolder : MonoBehaviour
     [SerializeField] TeaBag teaBag;
     [SerializeField] Letter letter;
     [SerializeField]
+    public bool task_done;
+    [SerializeField]
     int game_completed = 0;
     [SerializeField]
     int things_to_do;
@@ -111,6 +113,8 @@ public class GameHolder : MonoBehaviour
 
     public void DrawbookBtnClick()
     {
+        if (drawbook.task_completed)
+            return;
         drawbook.ShowDrawbook();
         dialogMng.LoadDialogue(drawbookDialog);
         dialogMng.ShowDialogue();
@@ -119,6 +123,8 @@ public class GameHolder : MonoBehaviour
 
     public void DrawbookBtnOver(Sprite bcg)
     {
+        if (drawbook.task_completed)
+            return;
         backGround.sprite = bcg;
     }
 
@@ -129,11 +135,14 @@ public class GameHolder : MonoBehaviour
 
     public void PictureBtnClick()
     {
+        if (task_done)
+            return;
         picture.gameObject.SetActive(true);
         backPictureButton.gameObject.SetActive(true);
         dialogMng.LoadDialogue(pictureDialog);
         dialogMng.ShowDialogue();
         dialogMng.ReadLine();
+
     }
 
     public void PictureBackBtnClick()
@@ -146,10 +155,13 @@ public class GameHolder : MonoBehaviour
         dialogMng.ShowDialogue();
         dialogMng.ReadLine();
         SetEndMinigame();
+        task_done = true;
     }
 
     public void PictureBtnOver(Sprite bcg)
     {
+        if (task_done)
+            return;
         backGround.sprite = bcg;
     }
 
@@ -160,11 +172,15 @@ public class GameHolder : MonoBehaviour
 
     public void FigureBookBtnClick()
     {
+        if (tradingCard.task_completed)
+            return;
         tradingCard.ShowTradingCard();
     }
 
     public void FigureBookBtnOver(Sprite bcg)
     {
+        if (tradingCard.task_completed)
+            return;
         backGround.sprite = bcg;
     }
 
@@ -175,11 +191,15 @@ public class GameHolder : MonoBehaviour
 
     public void AbacusBtnClick()
     {
+        if (abacus.task_completed)
+            return;
         abacus.ShowAbacus();
     }
 
     public void AbacusBtnOver(Sprite bcg)
     {
+        if (abacus.task_completed)
+            return;
         backGround.sprite = bcg;
     }
 
@@ -190,6 +210,8 @@ public class GameHolder : MonoBehaviour
 
     public void GuitarBtnClick()
     {
+        if (guitar.task_completed)
+            return;
         guitar.ShowGuitar();
         dialogMng.LoadDialogue(guitarDialog);
         dialogMng.ShowDialogue();
@@ -198,6 +220,8 @@ public class GameHolder : MonoBehaviour
 
     public void GuitarBtnOver(Sprite bck)
     {
+        if (guitar.task_completed)
+            return;
         backGround.sprite = bck;
     }
 
@@ -216,10 +240,13 @@ public class GameHolder : MonoBehaviour
         dialogMng.ShowDialogue();
         dialogMng.ReadLine();
         SetEndMinigame();
+        task_done = true;
     }
 
     public void PictureGirlfriendBtnClick()
     {
+        if (task_done)
+            return;
         pictureGirlfriend.raycastTarget = true;
         pictureGirlfriend.gameObject.SetActive(true);
         backPictureGirlfriendButton.gameObject.SetActive(true);
@@ -230,7 +257,8 @@ public class GameHolder : MonoBehaviour
 
     public void PictureGirlfriendBtnOver(Sprite bck)
     {
-        backGround.sprite = bck;
+        if(!task_done)
+            backGround.sprite = bck;
     }
 
     public void PictureGirlfirendBtnExit()
@@ -240,6 +268,8 @@ public class GameHolder : MonoBehaviour
 
     public void TelephoneBtnClick()
     {
+        if (tinder.task_done)
+            return;
         tinder.ShowTinder();
         dialogMng.LoadDialogue(tinderDialogue);
         dialogMng.ShowDialogue();
@@ -248,7 +278,8 @@ public class GameHolder : MonoBehaviour
 
     public void TelephoneBtnOver(Sprite bck)
     {
-        backGround.sprite = bck;
+        if(!tinder.task_done)
+            backGround.sprite = bck;
     }
     public void TelephoneBtnExit()
     {
@@ -257,6 +288,8 @@ public class GameHolder : MonoBehaviour
 
     public void MarriagePictureBtnClick()
     {
+        if (task_done)
+            return;
         pictureMarriage.gameObject.SetActive(true);
         backPictureMarriageBtn.gameObject.SetActive(true);
         dialogMng.LoadDialogue(pictureMarriageDialog);
@@ -266,7 +299,8 @@ public class GameHolder : MonoBehaviour
 
     public void MarriagePictureBtnOver(Sprite bck)
     {
-        backGround.sprite = bck;
+        if(!task_done)
+            backGround.sprite = bck;
     }
 
     public void MarriagePictureBtnExit()
@@ -283,10 +317,13 @@ public class GameHolder : MonoBehaviour
         dialogMng.ResetDialogue();
         dialogMng.CloseDialogue();
         SetEndMinigame();
+        task_done = true;
     }
 
     public void UserAgreementBtnClick()
     {
+        if (userAgreement.task_done)
+            return;
         userAgreement.ShowUserAgreement();
         dialogMng.LoadDialogue(userAgreementDialog);
         dialogMng.ShowDialogue();
@@ -295,7 +332,8 @@ public class GameHolder : MonoBehaviour
 
     public void UserAgreementBtnOver(Sprite bck)
     {
-        backGround.sprite = bck;
+        if(!userAgreement.task_done)
+            backGround.sprite = bck;
     }
 
     public void UserAgreementBtnExit()
@@ -305,15 +343,13 @@ public class GameHolder : MonoBehaviour
 
     public void DocumentBtnClick()
     {
-        dialogMng.LoadDialogue(documentDialog);
-        dialogMng.ShowDialogue();
-        dialogMng.ReadLine();
         document.ShowDocuments();
     }
 
     public void DocumentBtnOver(Sprite bck)
     {
-        backGround.sprite = bck;
+        if(!document.task_done)
+            backGround.sprite = bck;
     }
 
     public void DocumentBtnExit()
@@ -326,7 +362,8 @@ public class GameHolder : MonoBehaviour
     }
     public void CupBtnEnter(Sprite bck)
     {
-        backGround.sprite = bck;
+        if(!teaBag.task_completed)
+            backGround.sprite = bck;
     }
     public void CupBtnExit()
     {
@@ -341,9 +378,12 @@ public class GameHolder : MonoBehaviour
         dialogMng.ShowDialogue();
         dialogMng.ReadLine();
         SetEndMinigame();
+        task_done = true;
     }
     public void PictureNewphenBtnClick()
     {
+        if (task_done)
+            return;
         backPictureNewphenButton.SetActive(true);
         pictureNewphen.gameObject.SetActive(true);
         pictureNewphen.raycastTarget = true;
@@ -353,6 +393,8 @@ public class GameHolder : MonoBehaviour
     }
     public void PictureNewphenBtnOver(Sprite bck)
     {
+        if (task_done)
+            return;
         backGround.sprite = bck;
     }
     public void PictureNewphenBtnExit()
@@ -365,6 +407,8 @@ public class GameHolder : MonoBehaviour
     }
     public void LetterBtnOver(Sprite bck)
     {
+        if (letter.task_completed)
+            return;
         backGround.sprite = bck;
     }
     public void LetterBtnEnd()

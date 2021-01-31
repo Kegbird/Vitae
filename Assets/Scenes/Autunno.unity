@@ -121,6 +121,49 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &270805063 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4049463933127249312, guid: 445569deacbf2514fa125ed3ead4cbe8,
+    type: 3}
+  m_PrefabInstance: {fileID: 819119841}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &270805064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 270805063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_RaycastTarget: 0
+  m_Maskable: 0
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &270805065
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 270805063}
+  m_CullTransparentMesh: 0
 --- !u!1 &294862389 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4049463934784686882, guid: 445569deacbf2514fa125ed3ead4cbe8,
@@ -1000,7 +1043,7 @@ PrefabInstance:
     - target: {fileID: 4049463933127249327, guid: 445569deacbf2514fa125ed3ead4cbe8,
         type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.15
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4049463933127249327, guid: 445569deacbf2514fa125ed3ead4cbe8,
         type: 3}
@@ -1010,7 +1053,7 @@ PrefabInstance:
     - target: {fileID: 4049463933127249327, guid: 445569deacbf2514fa125ed3ead4cbe8,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.85
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4049463933127249327, guid: 445569deacbf2514fa125ed3ead4cbe8,
         type: 3}
@@ -1027,9 +1070,59 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 4049463933193939925, guid: 445569deacbf2514fa125ed3ead4cbe8,
+        type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4049463933193939925, guid: 445569deacbf2514fa125ed3ead4cbe8,
+        type: 3}
+      propertyPath: m_Maskable
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4049463934127290788, guid: 445569deacbf2514fa125ed3ead4cbe8,
         type: 3}
       propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4049463934127290788, guid: 445569deacbf2514fa125ed3ead4cbe8,
+        type: 3}
+      propertyPath: m_RaycastTarget
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4049463934127290788, guid: 445569deacbf2514fa125ed3ead4cbe8,
+        type: 3}
+      propertyPath: m_Maskable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4049463934127290789, guid: 445569deacbf2514fa125ed3ead4cbe8,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4049463934127290789, guid: 445569deacbf2514fa125ed3ead4cbe8,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4049463934127290789, guid: 445569deacbf2514fa125ed3ead4cbe8,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 4049463934127290789, guid: 445569deacbf2514fa125ed3ead4cbe8,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4049463934784686880, guid: 445569deacbf2514fa125ed3ead4cbe8,
+        type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4049463934784686880, guid: 445569deacbf2514fa125ed3ead4cbe8,
+        type: 3}
+      propertyPath: m_Maskable
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1200,7 +1293,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 2005511988}
-          m_MethodName: PictureGirlfriendBtnOver
+          m_MethodName: MarriagePictureBtnOver
           m_Mode: 2
           m_Arguments:
             m_ObjectArgument: {fileID: 21300000, guid: 336ab6d2fa402cc4e8e72d2a383895c7,
@@ -1548,6 +1641,7 @@ GameObject:
   - component: {fileID: 1606249304}
   - component: {fileID: 1606249303}
   - component: {fileID: 1606249302}
+  - component: {fileID: 1606249305}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1620,6 +1714,102 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1606249305
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1606249301}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 3d0345de9ec57cf46a94df3e674c9661, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.721
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1997795303
 GameObject:
   m_ObjectHideFlags: 0
@@ -1760,26 +1950,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backPictureButton: {fileID: 0}
+  backPictureNewphenButton: {fileID: 0}
   backPictureGirlfriendButton: {fileID: 0}
   backPictureMarriageBtn: {fileID: 1035951412}
   blackScreen: {fileID: 733426327}
   picture: {fileID: 0}
   pictureGirlfriend: {fileID: 0}
   pictureMarriage: {fileID: 1002470658}
+  pictureNewphen: {fileID: 0}
   defaultbackGround: {fileID: 21300000, guid: 08948624499a7d54fbccc498bece0b76, type: 3}
   backGround: {fileID: 583193172}
   drawbookDialog: {fileID: 0}
   figureDialog: {fileID: 0}
   guitarDialog: {fileID: 0}
-  pictureMarriageDialog: {fileID: 11400000, guid: 67bbde05ad577504fabd6d3958334807,
+  pictureMarriageDialog: {fileID: 11400000, guid: 7054207c53fc99444bdf99d7d9635d80,
     type: 2}
   abacusDialog: {fileID: 0}
   pictureDialog: {fileID: 0}
+  pictureEndDialog: {fileID: 0}
   pictureGirlfriendDialog: {fileID: 0}
+  pictureGirlfriendEndDialog: {fileID: 0}
+  pictureNewphenDialog: {fileID: 0}
+  pictureNewphenEndDialog: {fileID: 0}
   tinderDialogue: {fileID: 0}
-  userAgreementDialog: {fileID: 11400000, guid: 5466804f2907a164bb5644cc8bb98e9f,
+  userAgreementDialog: {fileID: 11400000, guid: 52f108de2e00fde4eb4e9c0be1b954f5,
     type: 2}
-  documentDialog: {fileID: 11400000, guid: 13b84c782f6525f4c837252f9d08134a, type: 2}
+  documentDialog: {fileID: 0}
   dialogMng: {fileID: 646394464}
   drawbook: {fileID: 0}
   tradingCard: {fileID: 0}
@@ -1788,6 +1984,9 @@ MonoBehaviour:
   tinder: {fileID: 0}
   userAgreement: {fileID: 2005511990}
   document: {fileID: 2005511991}
+  teaBag: {fileID: 0}
+  letter: {fileID: 0}
+  task_done: 0
   game_completed: 0
   things_to_do: 3
 --- !u!4 &2005511989
@@ -1836,7 +2035,9 @@ MonoBehaviour:
   node: 0
   holder: {fileID: 2005511988}
   dialogueManager: {fileID: 646394464}
-  dialogueEnd: {fileID: 11400000, guid: 67bbde05ad577504fabd6d3958334807, type: 2}
+  dialogueEnd: {fileID: 11400000, guid: da33413626d23034c9b1f7a243f46774, type: 2}
+  task_done: 0
+  mask: {fileID: 270805064}
 --- !u!114 &2005511991
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1865,7 +2066,8 @@ MonoBehaviour:
   page: {fileID: 298392828}
   index: 0
   dialogueManager: {fileID: 646394464}
-  dialogue: {fileID: 11400000, guid: 51dbb0fc209b59e4eb2584c5de28c9f7, type: 2}
+  dialogue: {fileID: 0}
   holder: {fileID: 2005511988}
   pressing: 0
   playing: 0
+  task_done: 0

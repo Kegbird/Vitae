@@ -115,7 +115,7 @@ public class TradingCard : MonoBehaviour
                 yield return null;
             }
             playing = true;
-            task_completed = false;
+            task_completed = true;
             placed = 0;
             figure_panel.GetComponent<Image>().raycastTarget = false;
             gameholder.SetEndMinigame();

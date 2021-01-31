@@ -22,9 +22,13 @@ public class Document : MonoBehaviour
     public bool pressing;
     [SerializeField]
     public bool playing;
+    [SerializeField]
+    public bool task_done;
 
     public void ShowDocuments()
     {
+        if (task_done)
+            return;
         page.gameObject.SetActive(true);
         page.sprite = pages[0];
         playing = true;
@@ -32,18 +36,16 @@ public class Document : MonoBehaviour
 
     public void HideDocuments()
     {
+        task_done = true;
         index = 0;
         playing = false;
-        dialogueManager.LoadDialogue(dialogue);
-        dialogueManager.ShowDialogue();
-        dialogueManager.ReadLine();
         holder.SetEndMinigame();
         page.gameObject.SetActive(false);
     }
 
     void Update()
     {
-        if (playing)
+        if (playing && !task_done)
         {
             if(Input.GetMouseButtonDown(0))
             {

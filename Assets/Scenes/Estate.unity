@@ -269,7 +269,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 715401127}
-          m_MethodName: FigureBookBtnOver
+          m_MethodName: GuitarBtnOver
           m_Mode: 2
           m_Arguments:
             m_ObjectArgument: {fileID: 21300000, guid: e9ac7c19b64d83e4a9aacb9ecdc4a919,
@@ -467,12 +467,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backPictureButton: {fileID: 0}
+  backPictureNewphenButton: {fileID: 0}
   backPictureGirlfriendButton: {fileID: 1132213034}
   backPictureMarriageBtn: {fileID: 0}
   blackScreen: {fileID: 922403437}
   picture: {fileID: 0}
   pictureGirlfriend: {fileID: 1573427042}
   pictureMarriage: {fileID: 0}
+  pictureNewphen: {fileID: 0}
   defaultbackGround: {fileID: 21300000, guid: a6f88adb7fa0212428278952519a8390, type: 3}
   backGround: {fileID: 489500884}
   drawbookDialog: {fileID: 0}
@@ -486,6 +488,8 @@ MonoBehaviour:
     type: 2}
   pictureGirlfriendEndDialog: {fileID: 11400000, guid: ab62df5ae818cf546a298318e4f002ca,
     type: 2}
+  pictureNewphenDialog: {fileID: 0}
+  pictureNewphenEndDialog: {fileID: 0}
   tinderDialogue: {fileID: 11400000, guid: 2f0ec4e047876fb449340b3d5ca12efd, type: 2}
   userAgreementDialog: {fileID: 0}
   documentDialog: {fileID: 0}
@@ -497,6 +501,9 @@ MonoBehaviour:
   tinder: {fileID: 715401130}
   userAgreement: {fileID: 0}
   document: {fileID: 0}
+  teaBag: {fileID: 0}
+  letter: {fileID: 0}
+  task_done: 0
   game_completed: 0
   things_to_do: 3
 --- !u!4 &715401128
@@ -589,6 +596,7 @@ MonoBehaviour:
   pressing: 0
   start: {x: 0, y: 0, z: 0}
   end: {x: 0, y: 0, z: 0}
+  task_done: 0
 --- !u!1001 &835499077
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2049,6 +2057,7 @@ GameObject:
   - component: {fileID: 1815779616}
   - component: {fileID: 1815779615}
   - component: {fileID: 1815779618}
+  - component: {fileID: 1815779619}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2136,6 +2145,102 @@ AudioSource:
   m_Volume: 0.6
   m_Pitch: 1
   Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!82 &1815779619
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1815779614}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 03f582a73717ae24392468f8da71416e, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.6
+  m_Pitch: 1
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

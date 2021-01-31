@@ -16,6 +16,8 @@ public class TeaBag : MonoBehaviour
     public Image mask;
     [SerializeField]
     public GameHolder holder;
+    [SerializeField]
+    public bool task_completed;
 
     public void ShowTeaBag()
     {
@@ -32,12 +34,15 @@ public class TeaBag : MonoBehaviour
             mask.raycastTarget = true;
             teabag.raycastTarget = true;
         }
+        if (task_completed)
+            return;
         StartCoroutine(ShowTeaBag());
     }
 
     public void HideTeaBag()
     {
         holder.SetEndMinigame();
+        task_completed = true;
         IEnumerator HideTeaBag()
         {
             for (float i = 1; i >= 0; i -= Time.deltaTime)

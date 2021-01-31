@@ -105,6 +105,7 @@ public class Abacus : MonoBehaviour
             playing = false;
             gameholder.SetEndMinigame();
         }
+        task_completed = true;
         StartCoroutine(HideAbacus());
     }
 

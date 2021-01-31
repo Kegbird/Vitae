@@ -166,8 +166,7 @@ namespace Assets.Scripts
         public void HideDrawbook()
         {
             image_index = 0;
-            sketch_completed = false;
-            task_completed = false;
+            task_completed = true;
             IEnumerator FadeDrawbook()
             {
                 for (float i = 1; i >= 0; i -= Time.deltaTime)

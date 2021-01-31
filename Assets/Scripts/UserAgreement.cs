@@ -27,10 +27,14 @@ public class UserAgreement : MonoBehaviour
     public DialogueManager dialogueManager;
     [SerializeField]
     public Dialogue dialogueEnd;
+    [SerializeField]
+    public bool task_done;
+    [SerializeField]
+    public Image mask;
 
     private void Update()
     {
-        if (playing)
+        if (playing && !task_done)
         {
             if(Input.GetMouseButtonUp(0) && pressing)
             {
@@ -87,13 +91,17 @@ public class UserAgreement : MonoBehaviour
                 user_agreement.color = new Color(1, 1, 1, i);
                 yield return null;
             }
+            mask.raycastTarget = true;
             playing = true;
         }
+        if (task_done)
+            return;
         StartCoroutine(ShowUserAgreement());
     }
 
     public void HideUserAgreement()
     {
+        task_done = true;
         dialogueManager.ResetDialogue();
         dialogueManager.LoadDialogue(dialogueEnd);
         dialogueManager.ShowDialogue();
@@ -109,6 +117,7 @@ public class UserAgreement : MonoBehaviour
                 yield return null;
             }
             playing = false;
+            mask.raycastTarget = false;
             page_scrolled = 0;
         }
         StartCoroutine(HideUserAgreement());

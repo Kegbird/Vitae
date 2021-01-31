@@ -34,9 +34,13 @@ public class Tinder : MonoBehaviour
     public Vector3 start;
     [SerializeField]
     public Vector3 end;
+    [SerializeField]
+    public bool task_done;
 
     public void ShowTinder()
     {
+        if (task_done)
+            return;
         phone.gameObject.SetActive(true);
         girlpic.gameObject.SetActive(true);
         notification.gameObject.SetActive(true);
@@ -71,9 +75,9 @@ public class Tinder : MonoBehaviour
             notification.sprite = dislike;
         IEnumerator animation()
         {
-            LeanTween.scale(notification.gameObject, new Vector3(4, 4, 0), 1f);
-            yield return new WaitForSeconds(1f);
-            LeanTween.scale(notification.gameObject, new Vector3(0, 0, 0), 1f);
+            LeanTween.scale(notification.gameObject, new Vector3(6, 6, 0), 0.25f);
+            yield return new WaitForSeconds(0.5f);
+            LeanTween.scale(notification.gameObject, new Vector3(0, 0, 0), 0.25f);
         }
         StartCoroutine(animation());
         girls_seen++;
@@ -88,12 +92,12 @@ public class Tinder : MonoBehaviour
 
     public void HideTinder()
     {
+        task_done = true;
         playing = false;
         phone.gameObject.SetActive(false);
         girlpic.gameObject.SetActive(false);
         notification.gameObject.SetActive(false);
         girlpic.sprite = girls[0];
-        playing = true;
         girls_seen = 0;
         gameHolder.SetEndMinigame();
         dialogueManager.ResetDialogue();

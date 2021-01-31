@@ -28,6 +28,8 @@ public class Letter : MonoBehaviour
     [SerializeField]
     public bool task_completed;
     [SerializeField]
+    public Dialogue[] dialogues;
+    [SerializeField]
     public DialogueManager dialogueManager;
     [SerializeField]
     public GameHolder holder;
@@ -54,6 +56,13 @@ public class Letter : MonoBehaviour
                         task_completed = true;
                         HideLetter();
                         return;
+                    }
+                    else
+                    {
+                        dialogueManager.ResetDialogue();
+                        dialogueManager.LoadDialogue(dialogues[fragment_written-1]);
+                        dialogueManager.ShowDialogue();
+                        dialogueManager.ReadLine();
                     }
                     letter.sprite = fragments[fragment_written];
                 }
@@ -96,6 +105,8 @@ public class Letter : MonoBehaviour
             playing = true;
             letter.raycastTarget = true;
         }
+        if (task_completed)
+            return;
         StartCoroutine(ShowLetter());
     }
 
@@ -103,7 +114,6 @@ public class Letter : MonoBehaviour
     {
         holder.SetEndMinigame();
         letter.sprite = fragments[0];
-        task_completed = false;
         IEnumerator HideLetter()
         {
             for (float i = 1; i >= 0; i -= Time.deltaTime)

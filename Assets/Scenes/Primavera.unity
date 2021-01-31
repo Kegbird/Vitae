@@ -167,6 +167,7 @@ GameObject:
   - component: {fileID: 72084845}
   - component: {fileID: 72084844}
   - component: {fileID: 72084843}
+  - component: {fileID: 72084846}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -239,6 +240,102 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &72084846
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 72084842}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 7c31aa6d49ab75047a6e4bcf0f4ed939, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.75
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &194985078 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6651473389593712177, guid: ee314ef60d5e86444bbeddfe392e9335,
@@ -2902,12 +2999,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backPictureButton: {fileID: 257033712}
+  backPictureNewphenButton: {fileID: 0}
   backPictureGirlfriendButton: {fileID: 0}
   backPictureMarriageBtn: {fileID: 0}
   blackScreen: {fileID: 2097887132}
   picture: {fileID: 965125543}
   pictureGirlfriend: {fileID: 0}
   pictureMarriage: {fileID: 0}
+  pictureNewphen: {fileID: 0}
   defaultbackGround: {fileID: 21300000, guid: e0b944f7b8a981447845c6a132ff9e37, type: 3}
   backGround: {fileID: 1273613526}
   drawbookDialog: {fileID: 11400000, guid: 693a22569168f254d8546542363f6bce, type: 2}
@@ -2918,6 +3017,9 @@ MonoBehaviour:
   pictureDialog: {fileID: 11400000, guid: 2b0fcd7814e57504f861653b9fe712d2, type: 2}
   pictureEndDialog: {fileID: 11400000, guid: fa35fb3c81aaff244925561cc063604a, type: 2}
   pictureGirlfriendDialog: {fileID: 0}
+  pictureGirlfriendEndDialog: {fileID: 0}
+  pictureNewphenDialog: {fileID: 0}
+  pictureNewphenEndDialog: {fileID: 0}
   tinderDialogue: {fileID: 0}
   userAgreementDialog: {fileID: 0}
   documentDialog: {fileID: 0}
@@ -2929,6 +3031,8 @@ MonoBehaviour:
   tinder: {fileID: 0}
   userAgreement: {fileID: 0}
   document: {fileID: 0}
+  teaBag: {fileID: 0}
+  letter: {fileID: 0}
   game_completed: 0
   things_to_do: 4
 --- !u!4 &1357865136
