@@ -1,26 +1,44 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Assets.Scripts;
 
-public class TutorialHandler : MonoBehaviour
+public class Credits : MonoBehaviour
 {
-    bool permit = false;
+    int counterSpace = 0;
     [SerializeField] Image blackScreen;
+    [SerializeField] Image credits;
+    [SerializeField] Image fin;
+    bool permit = false;
 
     public void Start()
     {
         BlackScreenEditor();
-        
+
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space) && permit)
         {
-            FadingOut();
+            counterSpace++;
+        }
+
+        switch (counterSpace)
+        {
+            case 0:
+                fin.color = new Color(credits.color.r, credits.color.g, credits.color.b, 0);
+                break;
+
+            case 1:
+                fin.color = new Color(credits.color.r, credits.color.g, credits.color.b, 1);
+                credits.color = new Color(credits.color.r, credits.color.g, credits.color.b, 0);
+                break;
+            case 2:
+                FadingOut();
+                break;
         }
     }
 
@@ -50,7 +68,8 @@ public class TutorialHandler : MonoBehaviour
                 blackScreen.color = new Color(0, 0, 0, i);
                 yield return null;
             }
-            SceneManager.LoadScene("Primavera");
+            Application.Quit();
         }
-    }  
+    }
 }
+
