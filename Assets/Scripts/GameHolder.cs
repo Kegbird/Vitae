@@ -21,11 +21,13 @@ public class GameHolder : MonoBehaviour
     [SerializeField] Dialogue abacusDialog;
     [SerializeField] Dialogue pictureDialog;
     [SerializeField] Dialogue pictureGirlfriendDialog;
+    [SerializeField] Dialogue tinderDialogue;
     [SerializeField] DialogueManager dialogMng;
     [SerializeField] Drawbook drawbook;
     [SerializeField] TradingCard tradingCard;
     [SerializeField] Abacus abacus;
     [SerializeField] Guitar guitar;
+    [SerializeField] Tinder tinder;
     [SerializeField]
     int game_completed = 0;
     [SerializeField]
@@ -180,7 +182,6 @@ public class GameHolder : MonoBehaviour
         guitar.ShowGuitar();
         dialogMng.ShowDialogue();
         dialogMng.ReadLine();
-        SetEndMinigame();
     }
 
     public void GuitarBtnOver(Sprite bck)
@@ -195,6 +196,7 @@ public class GameHolder : MonoBehaviour
 
     public void PictureGirlfriendBackBtnClick()
     {
+        pictureGirlfriend.raycastTarget = false;
         pictureGirlfriend.gameObject.SetActive(false);
         backPictureGirlfriendButton.gameObject.SetActive(false);
         StopAllCoroutines();
@@ -206,6 +208,7 @@ public class GameHolder : MonoBehaviour
 
     public void PictureGirlfriendBtnClick()
     {
+        pictureGirlfriend.raycastTarget = true;
         pictureGirlfriend.gameObject.SetActive(true);
         backPictureGirlfriendButton.gameObject.SetActive(true);
         dialogMng.LoadDialogue(pictureGirlfriendDialog);
@@ -223,38 +226,23 @@ public class GameHolder : MonoBehaviour
         backGround.sprite = defaultbackGround;
     }
 
-    public void summerButton3()
+    public void TelephoneBtnClick()
     {
-        /*if (backButton.gameObject.activeInHierarchy)
-            return;
-        popUpButtons[2].GetComponent<Button>().interactable = false;
-        backButton.gameObject.SetActive(true);*/
-        //dialogMng.LoadDialogue(button3Dialog);
+        tinder.ShowTinder();
+        dialogMng.LoadDialogue(tinderDialogue);
         dialogMng.ShowDialogue();
         dialogMng.ReadLine();
     }
-    public void summerButton4()
+
+    public void TelephoneBtnOver(Sprite bck)
     {
-        /*if (backButton.gameObject.activeInHierarchy)
-            return;
-        popUpButtons[3].GetComponent<Button>().interactable = false;
-        backButton.gameObject.SetActive(true);*/
-        //dialogMng.LoadDialogue(button4Dialog);
-        dialogMng.ShowDialogue();
-        dialogMng.ReadLine();
+        backGround.sprite = bck;
     }
-    public void fallButton1()
+    public void TelephoneBtnExit()
     {
-        /*if (backButton.gameObject.activeInHierarchy)
-            return;
-        popUp.color = new Color(popUp.color.r, popUp.color.g, popUp.color.b, 1f);
-        popUpButtons[0].GetComponent<Button>().interactable = false;
-        backButton.gameObject.SetActive(true);*/
-        //dialogMng.LoadDialogue(button1Dialog);
-        dialogMng.ShowDialogue();
-        dialogMng.ReadLine();
-        SetEndMinigame();
+        backGround.sprite = defaultbackGround;
     }
+
     public void fallButton2()
     {
         /*if (backButton.gameObject.activeInHierarchy)
@@ -363,10 +351,9 @@ public class GameHolder : MonoBehaviour
             case "Primavera":
                 SceneManager.LoadScene("Estate");
                 break;
-
             case "Estate":
+                SceneManager.LoadScene("Autunno");
                 break;
-
             case "Autunno":
                 break;
 

@@ -24,5 +24,6 @@ namespace Assets.Scripts
         public static int NUMBER_EVENTS = 5;
         public static int NUMBER_EVENT_SLOTS = 4;
         public static int BALLS = 6;
+        public static int GIRLS = 4;
     }
 }

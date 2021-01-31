@@ -43,11 +43,6 @@ public class Guitar : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            ShowGuitar();
-        }
-
         if (!task_completed && playing)
         {
             if (Input.GetMouseButtonUp(0) && pressing)
@@ -89,6 +84,7 @@ public class Guitar : MonoBehaviour
                 guitar.color = new Color(1, 1, 1, i);
                 yield return null;
             }
+            guitar.raycastTarget = true;
             playing = true;
         }
         StartCoroutine(ShowGuitar());
@@ -111,6 +107,7 @@ public class Guitar : MonoBehaviour
             playing = false;
             note_played = 0;
             game_holder.SetEndMinigame();
+            guitar.raycastTarget = false;
         }
         StartCoroutine(HideGuitar());
     }
