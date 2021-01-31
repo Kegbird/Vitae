@@ -13,14 +13,6 @@ public class TeaBag : MonoBehaviour
     [SerializeField]
     public bool playing;
 
-    private void Update()
-    {
-        if (Input.GetKey(KeyCode.I))
-            ShowTeaBag();
-        if (Input.GetKey(KeyCode.U))
-            HideTeaBag();
-    }
-
     public void ShowTeaBag()
     {
         IEnumerator ShowTeaBag()
@@ -33,6 +25,8 @@ public class TeaBag : MonoBehaviour
                 yield return null;
             }
             playing = true;
+            cup.raycastTarget = true;
+            teabag.raycastTarget = true;
         }
         StartCoroutine(ShowTeaBag());
     }
@@ -47,6 +41,8 @@ public class TeaBag : MonoBehaviour
                 yield return null;
             }
             playing = false;
+            cup.raycastTarget = false;
+            teabag.raycastTarget = false;
         }
         StartCoroutine(HideTeaBag());
     }

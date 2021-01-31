@@ -38,6 +38,7 @@ public class GameHolder : MonoBehaviour
     [SerializeField] Tinder tinder;
     [SerializeField] UserAgreement userAgreement;
     [SerializeField] Document document;
+    [SerializeField] TeaBag teaBag;
     [SerializeField]
     int game_completed = 0;
     [SerializeField]
@@ -315,38 +316,17 @@ public class GameHolder : MonoBehaviour
         backGround.sprite = defaultbackGround;
     }
 
-    public void winterButton2()
+    public void CupBtnClick()
     {
-        /*if (backButton.gameObject.activeInHierarchy)
-            return;
-        popUpButtons[1].GetComponent<Button>().interactable = false;
-        backButton.gameObject.SetActive(true);*/
-        //dialogMng.LoadDialogue(button2Dialog);
-        dialogMng.ShowDialogue();
-        dialogMng.ReadLine();
-        SetEndMinigame();
+        teaBag.ShowTeaBag();
     }
-    public void winterButton3()
+    public void CupBtnEnter(Sprite bck)
     {
-        /*if (backButton.gameObject.activeInHierarchy)
-            return;
-        popUpButtons[2].GetComponent<Button>().interactable = false;
-        backButton.gameObject.SetActive(true);*/
-        //dialogMng.LoadDialogue(button3Dialog);
-        dialogMng.ShowDialogue();
-        dialogMng.ReadLine();
-        SetEndMinigame();
+        backGround.sprite = bck;
     }
-    public void winterButton4()
+    public void CupBtnExit()
     {
-        /*if (backButton.gameObject.activeInHierarchy)
-            return;
-        popUpButtons[3].GetComponent<Button>().interactable = false;
-        backButton.gameObject.SetActive(true);*/
-        //dialogMng.LoadDialogue(button4Dialog);
-        dialogMng.ShowDialogue();
-        dialogMng.ReadLine();
-        SetEndMinigame();
+        backGround.sprite = defaultbackGround;
     }
 
 
@@ -385,6 +365,7 @@ public class GameHolder : MonoBehaviour
                 SceneManager.LoadScene("Inverno");
                 break;
             case "Inverno":
+                SceneManager.LoadScene("MainMenu");
                 break;
 
         }
