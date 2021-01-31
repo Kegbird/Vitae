@@ -89,6 +89,7 @@ namespace Assets.Scripts
                             dialogueManager.ResetDialogue();
                             dialogueManager.LoadDialogue(dialogue);
                             dialogueManager.ShowDialogue();
+                            dialogueManager.ReadLine();
                             HideDrawbook();
                         }
                         DisappearPoint();

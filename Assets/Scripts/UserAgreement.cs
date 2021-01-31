@@ -30,11 +30,6 @@ public class UserAgreement : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            ShowUserAgreement();
-        }
-
         if (playing)
         {
             if(Input.GetMouseButtonUp(0) && pressing)
@@ -102,6 +97,7 @@ public class UserAgreement : MonoBehaviour
         dialogueManager.ResetDialogue();
         dialogueManager.LoadDialogue(dialogueEnd);
         dialogueManager.ShowDialogue();
+        dialogueManager.ReadLine();
         holder.SetEndMinigame();
 
         IEnumerator HideUserAgreement()

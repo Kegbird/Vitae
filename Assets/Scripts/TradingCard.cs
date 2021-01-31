@@ -66,6 +66,7 @@ public class TradingCard : MonoBehaviour
             dialogueManager.ResetDialogue();
             dialogueManager.LoadDialogue(dialogue);
             dialogueManager.ShowDialogue();
+            dialogueManager.ReadLine();
             HideTradingCard();
             task_completed = true;
         }

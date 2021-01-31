@@ -27,6 +27,7 @@ public class GameHolder : MonoBehaviour
     [SerializeField] Dialogue pictureGirlfriendDialog;
     [SerializeField] Dialogue tinderDialogue;
     [SerializeField] Dialogue userAgreementDialog;
+    [SerializeField] Dialogue documentDialog;
     [SerializeField] DialogueManager dialogMng;
     [SerializeField] Drawbook drawbook;
     [SerializeField] TradingCard tradingCard;
@@ -34,6 +35,7 @@ public class GameHolder : MonoBehaviour
     [SerializeField] Guitar guitar;
     [SerializeField] Tinder tinder;
     [SerializeField] UserAgreement userAgreement;
+    [SerializeField] Document document;
     [SerializeField]
     int game_completed = 0;
     [SerializeField]
@@ -300,21 +302,20 @@ public class GameHolder : MonoBehaviour
     
     public void DocumentBtnClick()
     {
+        dialogMng.LoadDialogue(documentDialog);
         dialogMng.ShowDialogue();
         dialogMng.ReadLine();
-        SetEndMinigame();
+        document.ShowDocuments();
     }
 
-    public void DocumentBtnOver()
+    public void DocumentBtnOver(Sprite bck)
     {
-        dialogMng.ShowDialogue();
-        dialogMng.ReadLine();
-        SetEndMinigame();
+        backGround.sprite = bck;
     }
 
     public void DocumentBtnExit()
     {
-
+        backGround.sprite = defaultbackGround;
     }
 
     public void winterButton2()
@@ -384,6 +385,7 @@ public class GameHolder : MonoBehaviour
                 SceneManager.LoadScene("Autunno");
                 break;
             case "Autunno":
+                SceneManager.LoadScene("Inverno");
                 break;
 
             case "Inverno":

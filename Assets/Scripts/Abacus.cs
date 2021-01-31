@@ -81,6 +81,7 @@ public class Abacus : MonoBehaviour
         dialogueManager.ResetDialogue();
         dialogueManager.LoadDialogue(endDialogue);
         dialogueManager.ShowDialogue();
+        dialogueManager.ReadLine();
 
         IEnumerator HideAbacus()
         {
